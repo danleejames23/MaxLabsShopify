@@ -1,0 +1,84 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "description": "Description",
+      "on_sale": "Sale",
+      "from_price_html": "From {{ price }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "update": "Update"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Sorry, there are no products in this collection"
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Read More",
+      "comments": "Comments",
+      "posted_by": "Posted by {{ author }}"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "orders": "Order History",
+      "addresses": "Addresses",
+      "logout": "Log Out"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "create_account": "Create Account"
+    },
+    "register": {
+      "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close"
+  }
+}

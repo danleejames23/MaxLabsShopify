@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg"><link rel="apple-touch-icon" href="assets/logo.jpg"><title>Contact Us | Max Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-logo">MAX LABS</div>
+      <h2>Age Verification Required</h2>
+      <p>You must be 21 years or older to enter this site.</p>
+      <div class="age-modal-buttons">
+        <button class="btn age-deny-btn" onclick="denyAge()">Exit</button>
+        <button class="btn btn-primary" onclick="confirmAge()">I'm 21+</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-wrapper">
+        <a href="index.html" class="header-logo">
+          <img src="assets/logotransparent.png" alt="Max Labs" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+          <span class="header-logo-text" style="display:none;">MAX LABS</span>
+        </a>
+        <nav class="header-nav">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">About</a>
+          <a href="faq.html">FAQ</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="cart.html" class="header-cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    <a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="about.html">About Us</a>
+    <a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a>
+  </nav>
+
+  <main id="MainContent">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">Contact Us</h1>
+        <p class="page-description">We're here to help with any questions</p>
+      </div>
+    </div>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-form">
+            <h3 style="font-family: var(--font-heading); margin-bottom: 25px;">Send us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <select id="subject" name="subject" required>
+                  <option value="">Select a topic</option>
+                  <option value="order">Order Inquiry</option>
+                  <option value="product">Product Question</option>
+                  <option value="shipping">Shipping & Delivery</option>
+                  <option value="returns">Returns & Refunds</option>
+                  <option value="wholesale">Wholesale Inquiry</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-info-content">
+                <h4>Email</h4>
+                <p>support@maxlabs.com</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="contact-info-content">
+                <h4>Phone</h4>
+                <p>1-800-MAX-LABS</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contact-info-content">
+                <h4>Business Hours</h4>
+                <p>Mon-Fri: 9AM - 6PM EST<br>Sat-Sun: 10AM - 4PM EST</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-info-content">
+                <h4>Address</h4>
+                <p>123 Supplement Drive<br>Miami, FL 33101</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="contact-map" style="margin-top: 60px;">
+          <h3 style="font-family: var(--font-heading); margin-bottom: 25px; text-align: center;">Find Us</h3>
+          <div style="border-radius: 12px; overflow: hidden; border: 1px solid #2a2a2a;">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.8474774799!2d-80.1917902!3d25.7616798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b682479a7a25%3A0x6d3c3e6e7a1c4e0a!2sMiami%2C%20FL!5e0!3m2!1sen!2sus!4v1701500000000!5m2!1sen!2sus" 
+              width="100%" 
+              height="400" 
+              style="border:0; display: block; filter: grayscale(100%) invert(92%) contrast(83%);" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo">MAX LABS</div><p>Premium science-backed supplements.</p></div>
+        <div class="footer-column"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li></ul></div>
+        <div class="footer-column"><h4>Support</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div class="footer-column"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2024 Max Labs. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="maxlabs-chat-widget"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg"><link rel="apple-touch-icon" href="assets/logo.jpg"><title>Returns & Refunds | Max Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-logo">MAX LABS</div>
+      <h2>Age Verification Required</h2>
+      <p>You must be 21 years or older to enter this site.</p>
+      <div class="age-modal-buttons">
+        <button class="btn age-deny-btn" onclick="denyAge()">Exit</button>
+        <button class="btn btn-primary" onclick="confirmAge()">I'm 21+</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-wrapper">
+        <a href="index.html" class="header-logo">
+          <img src="assets/logotransparent.png" alt="Max Labs" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+          <span class="header-logo-text" style="display:none;">MAX LABS</span>
+        </a>
+        <nav class="header-nav">
+          <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a>
+          <a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="cart.html" class="header-cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    <a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="about.html">About Us</a>
+    <a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a>
+  </nav>
+
+  <main id="MainContent">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">Returns & Refunds</h1>
+        <p class="page-description">30-Day Money-Back Guarantee</p>
+      </div>
+    </div>
+
+    <div class="policy-content">
+      <h2>Our Guarantee</h2>
+      <p>We stand behind the quality of our products. If you're not completely satisfied with your purchase, we offer a 30-day money-back guarantee on all products.</p>
+
+      <h2>Return Eligibility</h2>
+      <p>To be eligible for a return:</p>
+      <ul>
+        <li>Request must be made within 30 days of delivery</li>
+        <li>Products must be at least 75% full (for opened items)</li>
+        <li>Unopened products must be in original packaging</li>
+        <li>Proof of purchase is required</li>
+      </ul>
+
+      <h2>How to Return</h2>
+      <p>To initiate a return:</p>
+      <ul>
+        <li>Contact our support team at support@maxlabs.com</li>
+        <li>Include your order number and reason for return</li>
+        <li>We'll provide a return authorization and shipping instructions</li>
+        <li>Ship the product back within 14 days of authorization</li>
+      </ul>
+
+      <h2>Refund Process</h2>
+      <p>Once we receive your return:</p>
+      <ul>
+        <li>We'll inspect the product within 2-3 business days</li>
+        <li>Approved refunds are processed to your original payment method</li>
+        <li>Refunds typically appear within 5-10 business days</li>
+        <li>You'll receive an email confirmation when your refund is processed</li>
+      </ul>
+
+      <h2>Return Shipping</h2>
+      <p>For returns due to our error (wrong item, defective product), we'll provide a prepaid return label. For other returns, customers are responsible for return shipping costs.</p>
+
+      <h2>Exchanges</h2>
+      <p>We don't offer direct exchanges. If you'd like a different product, please return your original order for a refund and place a new order.</p>
+
+      <h2>Damaged or Defective Products</h2>
+      <p>If you receive a damaged or defective product, contact us immediately with photos of the damage. We'll send a replacement at no additional cost.</p>
+
+      <h2>Non-Returnable Items</h2>
+      <ul>
+        <li>Products purchased more than 30 days ago</li>
+        <li>Products that are less than 75% full</li>
+        <li>Gift cards</li>
+        <li>Items marked as final sale</li>
+      </ul>
+
+      <h2>Questions?</h2>
+      <p>Contact our support team at support@maxlabs.com or call 1-800-MAX-LABS for return assistance.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom"><p class="footer-copyright">© 2024 Max Labs. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="maxlabs-chat-widget"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+

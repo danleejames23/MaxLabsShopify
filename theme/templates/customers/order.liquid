@@ -1,0 +1,90 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Order {{ order.name }}</h1>
+    <p class="page-subtitle">Placed on {{ order.created_at | date: '%B %d, %Y at %I:%M %p' }}</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <a href="/account" style="color: var(--color-primary); display: inline-block; margin-bottom: 30px;">← Back to Account</a>
+      
+      {% if order.cancelled %}
+        <div style="background: rgba(255, 68, 68, 0.1); border: 1px solid #ff4444; padding: 20px; border-radius: var(--border-radius); margin-bottom: 30px;">
+          <p style="color: #ff4444; margin: 0;"><strong>Order Cancelled</strong> on {{ order.cancelled_at | date: '%B %d, %Y' }} - {{ order.cancel_reason_label }}</p>
+        </div>
+      {% endif %}
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+        <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 25px;">
+          <h3 style="margin-bottom: 15px; font-size: 1rem;">Shipping Address</h3>
+          <p style="color: var(--color-text-muted);">{{ order.shipping_address | format_address }}</p>
+        </div>
+        
+        <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 25px;">
+          <h3 style="margin-bottom: 15px; font-size: 1rem;">Order Status</h3>
+          <p style="margin-bottom: 10px;">
+            <span style="display: inline-block; padding: 4px 12px; background: rgba(0, 255, 127, 0.1); border: 1px solid var(--color-primary); border-radius: 50px; font-size: 0.8rem; color: var(--color-primary);">
+              {{ order.fulfillment_status_label }}
+            </span>
+          </p>
+          <p style="color: var(--color-text-muted);">Payment: {{ order.financial_status_label }}</p>
+        </div>
+      </div>
+      
+      <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; margin-bottom: 30px;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: rgba(0, 255, 127, 0.1);">
+              <th style="padding: 15px 20px; text-align: left; border-bottom: 1px solid var(--color-border);">Product</th>
+              <th style="padding: 15px 20px; text-align: center; border-bottom: 1px solid var(--color-border);">Quantity</th>
+              <th style="padding: 15px 20px; text-align: right; border-bottom: 1px solid var(--color-border);">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line_item in order.line_items %}
+              <tr>
+                <td style="padding: 15px 20px; border-bottom: 1px solid var(--color-border);">
+                  <strong>{{ line_item.title }}</strong>
+                  {% if line_item.variant.title != 'Default Title' %}
+                    <br><span style="color: var(--color-text-muted); font-size: 0.9rem;">{{ line_item.variant.title }}</span>
+                  {% endif %}
+                </td>
+                <td style="padding: 15px 20px; text-align: center; border-bottom: 1px solid var(--color-border);">{{ line_item.quantity }}</td>
+                <td style="padding: 15px 20px; text-align: right; border-bottom: 1px solid var(--color-border);">{{ line_item.final_line_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 25px; max-width: 350px; margin-left: auto;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span>Subtotal</span>
+          <span>{{ order.line_items_subtotal_price | money }}</span>
+        </div>
+        {% for discount in order.discounts %}
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--color-primary);">
+            <span>Discount ({{ discount.code }})</span>
+            <span>-{{ discount.savings | money }}</span>
+          </div>
+        {% endfor %}
+        {% for shipping_method in order.shipping_methods %}
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span>Shipping ({{ shipping_method.title }})</span>
+            <span>{{ shipping_method.price | money }}</span>
+          </div>
+        {% endfor %}
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span>Tax</span>
+          <span>{{ order.tax_price | money }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding-top: 15px; border-top: 1px solid var(--color-border); font-weight: 700; font-size: 1.1rem;">
+          <span>Total</span>
+          <span style="color: var(--color-primary);">{{ order.total_price | money }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

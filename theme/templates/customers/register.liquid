@@ -1,0 +1,58 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Create Account</h1>
+    <p class="page-subtitle">Join the Max Labs community</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    <div style="max-width: 450px; margin: 0 auto;">
+      <div class="contact-form">
+        {% form 'create_customer' %}
+          {{ form.errors | default_errors }}
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group" style="margin: 0;">
+              <label class="form-label" for="first-name">First Name</label>
+              <input type="text" id="first-name" name="customer[first_name]" class="form-input" required>
+            </div>
+            
+            <div class="form-group" style="margin: 0;">
+              <label class="form-label" for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="customer[last_name]" class="form-input" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="customer[email]" class="form-input" required autocomplete="email">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" name="customer[password]" class="form-input" required autocomplete="new-password">
+          </div>
+          
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" name="customer[accepts_marketing]" style="margin-top: 4px;">
+              <span style="font-size: 0.9rem; color: var(--color-text-muted);">Sign up for exclusive offers, training tips, and new product announcements.</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+          
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center; margin-top: 20px;">
+            By creating an account, you agree to our <a href="/pages/terms-conditions" style="color: var(--color-primary);">Terms & Conditions</a> and <a href="/pages/privacy-policy" style="color: var(--color-primary);">Privacy Policy</a>.
+          </p>
+        {% endform %}
+      </div>
+      
+      <div style="text-align: center; margin-top: 40px; padding: 30px; background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px;">
+        <p style="margin-bottom: 15px;">Already have an account?</p>
+        <a href="/account/login" class="btn btn-secondary">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>

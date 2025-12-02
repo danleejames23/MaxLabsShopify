@@ -1,0 +1,81 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">{{ blog.title }}</h1>
+    <p class="page-subtitle">Expert insights on supplements, fitness, and performance optimization</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    {% if blog.articles.size > 0 %}
+      <div class="blog-grid">
+        {% for article in blog.articles %}
+          <article class="blog-card">
+            <div class="blog-card-image">
+              {% if article.image %}
+                <img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}" loading="lazy">
+              {% else %}
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="{{ article.title }}" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span>{{ article.published_at | date: '%B %d, %Y' }}</span>
+                <span>•</span>
+                <span>{{ article.author }}</span>
+              </div>
+              <h2 class="blog-card-title">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h2>
+              <p class="blog-card-excerpt">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
+              <a href="{{ article.url }}" class="blog-card-link">
+                Read More
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      
+      {% if blog.articles.size == 0 %}
+        <div style="text-align: center; padding: 80px 0;">
+          <p style="color: var(--color-text-muted);">No articles yet. Check back soon!</p>
+        </div>
+      {% endif %}
+    {% else %}
+      <!-- Demo blog posts when no articles exist -->
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Blog Post" loading="lazy">
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span>{{ 'now' | date: '%B %d, %Y' }}</span>
+              <span>•</span>
+              <span>Max Labs Team</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#">The Ultimate Guide to Turkesterone: Benefits, Dosage & Results</a>
+            </h2>
+            <p class="blog-card-excerpt">Discover everything you need to know about Turkesterone, the natural anabolic compound that's taking the fitness world by storm...</p>
+            <a href="#" class="blog-card-link">
+              Read More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    {% endif %}
+    
+    {% if paginate.pages > 1 %}
+      <div class="pagination" style="text-align: center; margin-top: 50px;">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endif %}
+  </div>
+</div>

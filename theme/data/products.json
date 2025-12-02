@@ -1,0 +1,385 @@
+{
+  "products": [
+    {
+      "title": "Post Cycle Therapy",
+      "handle": "post-cycle-therapy",
+      "price": 3899,
+      "compare_at_price": 4999,
+      "discount_percent": 22,
+      "rating": 5.0,
+      "quick_benefits": [
+        "Free Next Day Delivery (UK) / International Shipping ✅",
+        "Natural Post Cycle Therapy ✅",
+        "Restores Hormonal Imbalances ✅",
+        "Support Supplement ✅",
+        "Highest Rated Supplier ✅"
+      ],
+      "description_short": "You've invested time, dedication, and intense effort into your training cycle. Now, as you transition off-cycle, the critical step is protecting your progress and restoring your body's natural balance. Max Labs Post Cycle Therapy (PCT) is expertly crafted to help you smoothly navigate post-cycle recovery.",
+      "description": "<h3>Post Cycle Therapy (Max Labs)</h3><h4>Rebalance, Recover, and Revitalize</h4><p>You've invested time, dedication, and intense effort into your training cycle. Now, as you transition off-cycle, the critical step is protecting your progress and restoring your body's natural balance. Max Labs Post Cycle Therapy (PCT) is expertly crafted to help you smoothly navigate post-cycle recovery, ensuring that your body returns to its optimal hormonal and physiological state, ready for your next breakthrough.</p><h3>Why Post Cycle Therapy Matters</h3><p>After a rigorous supplement cycle, especially one involving powerful prohormones or SARMs, your body's hormonal equilibrium can be significantly disrupted. Testosterone levels may drop, estrogen could spike, and your body might struggle to maintain the muscle gains and strength you've achieved. Effective Post Cycle Therapy is vital—it helps restore hormonal balance, safeguards muscle gains, prevents side effects, and promotes overall well-being.</p><h3>The Max Labs PCT Difference</h3><p>Max Labs Post Cycle Therapy is not merely another supplement—it's a precise, science-backed formula that leverages potent, natural ingredients. Each ingredient works synergistically to support your hormonal system, boost testosterone levels naturally, and maintain the muscle and strength you've worked tirelessly to build.</p><h3>What's Inside Max Labs PCT?</h3><ul><li><strong>Tribulus Terrestris (250 mg):</strong> Tribulus terrestris is renowned for its natural testosterone-boosting properties. It stimulates your body's hormone production, helping to increase testosterone levels naturally after a cycle. Higher testosterone levels mean enhanced strength, improved muscle retention, increased libido, and greater overall vitality.</li><li><strong>Maca Root 4:1 (100 mg):</strong> Maca root, a powerful adaptogenic herb, is known for its ability to enhance endurance, energy, and libido. Its adaptogenic properties assist in balancing hormone levels, alleviating post-cycle stress, and stabilizing mood fluctuations.</li><li><strong>DHEA (100 mg):</strong> Dehydroepiandrosterone (DHEA) plays a pivotal role in hormone production and balance. Supplementing with DHEA post-cycle supports hormonal equilibrium, revitalizes your energy levels, and accelerates your recovery process.</li><li><strong>DIM (Diindolylmethane – 200 mg):</strong> DIM is an essential compound derived from cruciferous vegetables, recognized for its role in estrogen metabolism. It modulates estrogen levels effectively, preventing estrogen dominance and related side effects such as gynecomastia and water retention.</li></ul><h3>Comprehensive Benefits of Max Labs PCT</h3><h4>Restores Natural Testosterone Levels</h4><p>Max Labs PCT is specifically engineered to quickly reboot your body's natural testosterone production. By supporting optimal hormone levels, it preserves your muscle gains and helps maintain strength and physical performance.</p><h4>Efficient Estrogen Management</h4><p>Managing estrogen is crucial post-cycle. The DIM in Max Labs PCT expertly moderates estrogen metabolism, keeping levels balanced and reducing unwanted side effects. This results in a leaner physique, fewer mood swings, and increased overall well-being.</p><h4>Prostate Health Support</h4><p>Prostate health can often be compromised during intense supplement cycles. Max Labs PCT provides crucial herbal support, notably from Tribulus and DIM, ingredients known for their positive impact on male reproductive and prostate health.</p><h4>Enhances Libido and Mood</h4><p>Hormonal fluctuations post-cycle can negatively affect your mood and libido. Ingredients like Tribulus Terrestris and Maca Root work harmoniously to revive your energy, enhance libido, and stabilize your mood.</p><h3>Ideal for Every Athlete</h3><p>Max Labs Post Cycle Therapy is an essential supplement for:</p><ul><li>Bodybuilders completing SARMs, prohormone, or anabolic supplement cycles</li><li>Athletes aiming to maintain lean muscle and strength post-cycle</li><li>Individuals seeking optimal hormonal balance and enhanced well-being post-cycle</li></ul><h3>How to Use Max Labs PCT</h3><p>For optimal results, take two capsules of Max Labs PCT daily, ideally with meals. Continue using it throughout your post-cycle phase to ensure complete hormonal recovery and maintenance of muscle gains. Consistency is key to achieving the maximum benefits.</p>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["pct", "testosterone", "recovery", "bestseller"],
+      "reviews": 20,
+      "rating_count": 20,
+      "sold": 437,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "faqs": [
+        {
+          "question": "How long should I use Max Labs PCT?",
+          "answer": "We recommend using Max Labs PCT throughout your entire post-cycle recovery phase, typically 4-8 weeks, depending on your cycle duration and intensity."
+        },
+        {
+          "question": "Can I combine Max Labs PCT with other supplements?",
+          "answer": "Yes, Max Labs PCT is designed to complement your overall supplementation strategy, and it safely pairs with most general wellness and recovery supplements."
+        },
+        {
+          "question": "Are there any side effects?",
+          "answer": "Max Labs PCT uses natural, safe ingredients. However, consult with your healthcare provider if you have specific health concerns or are currently taking medication."
+        }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientific-backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "60 Capsules (30 Day Supply)",
+          "price": 3899,
+          "sku": "ML-PCT-60"
+        },
+        {
+          "title": "120 Capsules (60 Day Supply)",
+          "price": 6999,
+          "sku": "ML-PCT-120"
+        }
+      ],
+      "images": [
+        "pct-1.jpg",
+        "pct-2.jpg",
+        "pct-3.jpg",
+        "pct-4.jpg"
+      ]
+    },
+    {
+      "title": "Alpha GPC",
+      "handle": "alpha-gpc",
+      "price": 3999,
+      "compare_at_price": 4999,
+      "discount_percent": 20,
+      "rating": 5.0,
+      "quick_benefits": [
+        "Increases growth hormones",
+        "Increases power",
+        "Improved strength",
+        "Boosts fat loss",
+        "Improved body composition",
+        "Boosts energy",
+        "Improves memory and mental focus"
+      ],
+      "description_short": "Increase your endurance performance and growth hormone production with Max Labs Alpha-GPC. Athletes looking for more power use Alpha-GPC, one of the world's most popular nootropics. Most people use it for the mind and muscles, but some claim it can help you lose fat and live longer.",
+      "description": "<h3>Alpha GPC Supplements</h3><p>Increase your endurance performance and growth hormone production with Max Labs Alpha-GPC.</p><p>Athletes looking for more power use Alpha-GPC, one of the world's most popular nootropics. Most people use it for the mind and muscles, but some claim it can help you lose fat and live longer. Alpha-GPC is great if you want an extra push in the gym without the side effects of classical stimulants like caffeine.</p><h3>Boost Your Power Output</h3><p>Alpha-GPC initially came onto the scene when studies showed a <strong>14% increase in power output</strong> assessed by bench throws.</p><p>Using caffeine and placebo as controls, researchers compared 250 mg Alpha-GPC to 500 mg Alpha-GPC. Using isometric mid-thigh pulls (among other tests), 250 mg Alpha-GPC increased power and velocity the most compared to the placebo.</p><h3>Prevent Cognitive Decline</h3><p>Alpha-GPC has been shown to improve cognitive functions like memory, learning, recall, focus, and repetitive tasks, as well as physical functions like power output, force development, strength, jumping, and agility.</p><p>It's even proven to help you play video games better.</p><h3>Burn Fat Fast</h3><p>The benefits of A-GPC go beyond cognition and workout performance. They also affect body composition.</p><p>A single dose of Alpha-GPC increases growth hormone secretion and fat-burning within an hour in healthy young men. Studies show that in 60 minutes, <strong>growth hormone levels had risen by 290%</strong>. Higher growth hormone means faster muscle recovery and increased fat burning.</p><p>Take Alpha-GPC 30-60 minutes before working out for faster results.</p><h3>Benefits of Alpha GPC</h3><ul><li>✅ Increases growth hormones</li><li>✅ Increases power</li><li>✅ Improved strength</li><li>✅ Boosts fat loss</li><li>✅ Improved body composition</li><li>✅ Boosts energy</li><li>✅ Improves memory and mental focus</li></ul>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["nootropic", "cognitive", "focus", "brain", "growth-hormone"],
+      "reviews": 99,
+      "rating_count": 99,
+      "sold": 210,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientifically backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "60 Capsules",
+          "price": 3999,
+          "sku": "ML-AGPC-60"
+        },
+        {
+          "title": "120 Capsules",
+          "price": 6999,
+          "sku": "ML-AGPC-120"
+        }
+      ],
+      "images": [
+        "alpha-gpc-1.jpg",
+        "alpha-gpc-2.jpg",
+        "alpha-gpc-3.jpg"
+      ]
+    },
+    {
+      "title": "Ashwagandha",
+      "handle": "ashwagandha",
+      "price": 3999,
+      "compare_at_price": 4999,
+      "discount_percent": 20,
+      "rating": 4.99,
+      "quick_benefits": [
+        "Increases muscle strength",
+        "Boosts testosterone and fertility in men",
+        "Reduces stress and anxiety",
+        "Relieves depression",
+        "Reduces blood sugar levels",
+        "Improves sleep"
+      ],
+      "description_short": "Max Labs Ashwagandha increases energy levels, boosts muscle strength, relieves stress, and improves concentration. In Ayurvedic medicine, ashwagandha is traditionally used for its adaptogenic properties to increase energy, improve overall health, and reduce inflammation.",
+      "description": "<h3>Ashwagandha Supplements</h3><p>Max Labs Ashwagandha increases energy levels, boosts muscle strength, relieves stress, and improves concentration.</p><p>In Ayurvedic medicine, ashwagandha is traditionally used for its adaptogenic properties to increase energy, improve overall health, and reduce inflammation.</p><h3>Improve Muscle Mass And Strength</h3><p>As an adaptogen, ashwagandha reduces stress and anxiety by adjusting your body's response to stress. Physically and mentally, lessening stress and anxiety in relation to athletic performance can have a massive impact on performance.</p><p>Ashwagandha supplements are shown to promote muscle mass and benefit health. Several studies suggest that the herb enhances physical performance, muscle strength, and oxygen use during exercise.</p><h3>Naturally Boost Testosterone</h3><p>A low testosterone level can result in irritability, fatigue, loss of muscle mass, and decreased sex drive. According to research, ashwagandha may increase testosterone levels significantly.</p><p>During an 8-week study, 43 men ages 40–70 took tablets containing ashwagandha extract or a placebo daily. <strong>Participants who took the herb had a 14.7% higher testosterone level than those who took a placebo.</strong></p><h3>Improve Your Sleep</h3><p>Ashwagandha may be an effective natural remedy to improve sleep, especially for people with insomnia, according to recent scientific evidence.</p><p>For bigger gains and better performance, you need to improve the quality and duration of your sleep to help your body recover and rebuild muscle mass.</p><h3>Benefits of Ashwagandha</h3><ul><li>✅ Increases muscle strength</li><li>✅ Boosts testosterone and fertility in men</li><li>✅ Reduces stress and anxiety</li><li>✅ Relieves depression</li><li>✅ Reduces blood sugar levels</li><li>✅ Improves sleep</li></ul><p>Ashwagandha is generally considered safe for most people. It's essential to consult a healthcare professional before adding any supplement to your daily routine.</p>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["adaptogen", "stress", "testosterone", "sleep", "bestseller"],
+      "reviews": 93,
+      "rating_count": 93,
+      "sold": 180,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientifically backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "60 Capsules (30 Day Supply)",
+          "price": 3999,
+          "sku": "ML-ASH-60"
+        },
+        {
+          "title": "120 Capsules (60 Day Supply)",
+          "price": 6999,
+          "sku": "ML-ASH-120"
+        }
+      ],
+      "images": [
+        "ashwagandha-1.jpg",
+        "ashwagandha-2.png",
+        "ashwagandha-3.jpg",
+        "ashwagandha-4.jpg"
+      ]
+    },
+    {
+      "title": "Tongkat Ali Supplements",
+      "handle": "tongkat-ali",
+      "price": 3999,
+      "compare_at_price": 4999,
+      "discount_percent": 20,
+      "rating": 5.0,
+      "quick_benefits": [
+        "Increases the production of testosterone",
+        "Improves sexual health & libido",
+        "Boosts strength and muscle",
+        "Burns fat",
+        "Reduces stress and anger & improves mood"
+      ],
+      "description_short": "Get stronger, have more energy, and boost your libido without risking your health. Tongkat Ali has been used for centuries to boost testosterone, build muscle, improve your libido and increase energy. The best all-natural way to increase testosterone is right here!",
+      "description": "<h3>Get Stronger, Have More Energy, Boost Your Libido</h3><p>Tongkat Ali has been used for centuries to boost testosterone, build muscle, improve your libido and increase energy. The best all-natural way to increase testosterone is right here!</p><h4>Key Benefits:</h4><ul><li>Increases the production of testosterone</li><li>Improves sexual health & libido</li><li>Boosts strength and muscle</li><li>Burns fat</li><li>Reduces stress and anger & improves mood</li></ul><h4>Benefits of Tongkat Ali:</h4><ul><li>✅ Naturally boosts testosterone levels to support hormonal balance</li><li>✅ Enhances muscle growth, stamina, and physical performance</li><li>✅ Increases energy and supports overall wellbeing</li><li>✅ Ideal for men's health, fitness, and vitality goals</li><li>✅ Premium Tongkat Ali testosterone booster backed by quality and testing</li></ul><h4>Athletic Performance:</h4><p>Testosterone is an anabolic hormone. It helps build and strengthen muscle mass. Max Labs Tongkat Ali will increase testosterone and help you build muscle, so your workouts and exercises will be more effective. Once you have muscle, testosterone will also help you maintain it. Tongkat Ali testosterone supplements can aid in losing body fat while improving the ability to gain lean body mass.</p><p>Tongkat Ali has been shown to increase lean body mass in a promising Malaysian study published in 2002. Over five weeks, men in the Tongkat Ali group experienced a <strong>5% increase in lean body mass</strong> and a significant reduction in body fat.</p><h4>Traditional Use:</h4><p>In Malaysia, lower Burma, Thailand, and Indonesia, Tongkat Ali means \"Ali's walking stick\". It is used to treat malaria, high blood pressure, fevers, fatigue, loss of sexual desire, and impotence as a traditional remedy. The ingredients are 100% natural and plant-based. Contrary to anabolic steroids, Tongkat Ali testosterone supplements help your body to produce more testosterone.</p><h4>How Tongkat Ali Supplements Work:</h4><p>Tongkat Ali helps boost natural testosterone production by increasing free testosterone levels and lowering stress hormones like cortisol. This supports muscle growth, energy, libido, and overall performance.</p><h4>Our Guarantee:</h4><ul><li>Pharmaceutical grade</li><li>Manufactured in the UK</li><li>HPLC Tested</li><li>Free Next Day Delivery UK / Free International Shipping</li><li>Scientific-backed advice and assistance</li></ul><p>If you don't have a positive experience for ANY reason, we will do WHATEVER it takes to ensure you are 100% satisfied with your purchase.</p>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["testosterone", "energy", "libido", "male-health", "bestseller"],
+      "reviews": 87,
+      "rating_count": 87,
+      "sold": 344,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "faqs": [
+        {
+          "question": "What is Tongkat Ali and how does it support testosterone levels?",
+          "answer": "Tongkat Ali is a natural herbal extract known for its potential to boost testosterone levels, which can improve energy, stamina, and muscle growth. Many users turn to a trusted Tongkat Ali testosterone supplement to safely enhance their hormonal balance and overall performance."
+        },
+        {
+          "question": "Is Tongkat Ali safe to use as a supplement in the UK?",
+          "answer": "Yes, Tongkat Ali is a natural and legal supplement in the UK. Buying a premium Tongkat Ali supplement allows you to experience its benefits safely and effectively."
+        },
+        {
+          "question": "How quickly can I expect results from using Tongkat Ali supplements?",
+          "answer": "Results can vary depending on the dosage, but many users report noticeable improvements in energy, mood, and testosterone levels within a few weeks of consistent use."
+        }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientific-backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "60 Capsules",
+          "price": 3999,
+          "sku": "ML-TA-60"
+        },
+        {
+          "title": "120 Capsules",
+          "price": 6999,
+          "sku": "ML-TA-120"
+        }
+      ],
+      "images": [
+        "tongkat-ali-1.jpg",
+        "tongkat-ali-2.jpg",
+        "tongkat-ali-3.jpg",
+        "tongkat-ali-4.jpg"
+      ]
+    },
+    {
+      "title": "Max Strength Turkesterone 1400mg",
+      "handle": "max-strength-turkesterone-1400mg",
+      "price": 3999,
+      "compare_at_price": 7599,
+      "discount_percent": 47,
+      "rating": 4.99,
+      "quick_benefits": [
+        "Promotes Muscle Growth",
+        "Increased Strength",
+        "Natural Testosterone Booster",
+        "700 MG / 90 Caps / 10x Strength"
+      ],
+      "description_short": "Buy Turkesterone from Max Labs - the UK and Europe's #1 supplier, offering maximum strength for maximum results. Our Turkesterone is 1400mg — the highest dose available on the market.",
+      "description": "<h3>Max Strength – Turkesterone Supplements (1400mg)</h3><p>Buy Turkesterone from Max Labs - the UK and Europe's #1 supplier, offering maximum strength for maximum results. Our Turkesterone is 1400mg — the highest dose available on the market.</p><p>Turkesterone supplements are a natural steroid found in plants and insects that helps improve muscle growth and strength. It has gained significant attention in the bodybuilding community for its ability to enhance performance, promote muscle gains, and improve body composition.</p><h3>Benefits of Turkesterone</h3><ul><li>✅ Increases muscle mass</li><li>✅ Strengthens your body</li><li>✅ Increases the ratio of muscle to fat</li><li>✅ An increase in muscular endurance</li><li>✅ Recovery time improved</li><li>✅ Improves sleep, cholesterol, and glucose levels</li><li>✅ Benefits of steroids without cycling or PCT</li></ul><p>Take your Turkesterone dose in the morning with food, as taking it on an empty stomach may cause mild discomfort for some users. When used at the recommended dosage, Turkesterone typically has limited side effects, especially when compared to the benefits it brings.</p><h3>Key Features of Turkesterone</h3><h4>Boosts Muscle Growth & Strength</h4><p>Research has shown that Turkesterone supplements help to increase strength and muscle mass in humans. The efficacy of Turkesterone products has been compared to small doses of anabolic steroids but without the androgenic side effects. Additionally, WADA does not consider Turkesterone supplements a prohibited substance. This ruling makes it a safe and legal option for those seeking effective muscle and strength gains.</p><h4>Promotes Muscle Repair & Recovery</h4><p>During unfamiliar or intense exercise, muscle damage is repaired through protein synthesis. A Turkesterone supplement is likely to aid exercise recovery, as ecdysteroids like Turkesterone have been shown to <strong>increase protein synthesis by up to 20%</strong>. This makes it a popular choice for those looking to enhance recovery and muscle growth.</p><h4>Starts Working Fast</h4><p>A supplement needs to show results quickly, or users may stop taking it. That's why <strong>68% of people using Turkesterone reported feeling the benefits within the first four weeks</strong>. You can expect noticeable increases in strength and performance fast.</p><h3>How Turkesterone Supplements Work</h3><p>Turkesterone supplements support muscle growth, strength, and recovery by promoting protein synthesis without affecting hormone levels. Unlike steroids, they're non-hormonal and don't require PCT. That's why so many choose Turkesterone as a safe, natural way to boost performance. For bodybuilders, gym goers or anyone looking to gain muscle, Max Labs offers high-purity products.</p><h3>Why Buy Turkesterone Supplements from Us?</h3><ul><li>✅ <strong>Premium-Grade Quality</strong> – Our Turkesterone products are lab-tested for purity and potency to ensure maximum effectiveness.</li><li>✅ <strong>No Fillers or Banned Substances</strong> – 100% natural, with no hidden additives or illegal compounds.</li><li>✅ <strong>Fast UK Shipping</strong> – Get your Turkesterone supplement quickly and reliably, wherever you are in the UK.</li><li>✅ <strong>Trusted by the Fitness Community</strong> – Thousands of satisfied customers choose Max Labs for proven performance.</li><li>✅ <strong>Excellent Customer Support</strong> – Our expert team is on hand to help with any queries.</li></ul><p>When it comes to finding the best Turkesterone supplement customers can trust, Max Labs deliver on quality, service, and results. Experience the benefits of Turkesterone today.</p>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["muscle", "strength", "recovery", "bestseller", "new", "testosterone"],
+      "reviews": 90,
+      "rating_count": 90,
+      "sold": 468,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "faqs": [
+        {
+          "question": "What is Turkesterone and why should I choose a Turkesterone supplement?",
+          "answer": "Turkesterone is a natural ecdysteroid compound found in certain plants that supports muscle growth, recovery, and performance. Choosing a high-quality Turkesterone supplement ensures you get a pure and effective product that can help you achieve your muscle building goals."
+        },
+        {
+          "question": "Where can I buy Turkesterone safely and reliably?",
+          "answer": "You can buy Turkesterone from trusted suppliers like Max Labs, who offer lab-tested, premium-grade supplements with fast shipping. Always choose reputable sellers to ensure you get a Turkesterone supplement that's pure, potent, and free from banned substances."
+        },
+        {
+          "question": "How do I know which is the best Turkesterone supplement?",
+          "answer": "The best Turkesterone supplement will be third-party tested, have clear ingredient transparency, and provide a high dosage per serving. At Max Labs we have positive reviews and offer reliable UK delivery to guarantee you're investing in an effective and safe product."
+        }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientific-backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "90 Capsules (700mg x 2 per day)",
+          "price": 3999,
+          "sku": "ML-TURK-90"
+        },
+        {
+          "title": "180 Capsules (60 Day Supply)",
+          "price": 6999,
+          "sku": "ML-TURK-180"
+        }
+      ],
+      "images": [
+        "turkesterone-1.jpg",
+        "turkesterone-2.png",
+        "turkesterone-3.jpg",
+        "turkesterone-4.jpg"
+      ]
+    },
+    {
+      "title": "On Cycle Support",
+      "handle": "on-cycle-support",
+      "price": 3899,
+      "compare_at_price": 4999,
+      "discount_percent": 22,
+      "rating": 5.0,
+      "quick_benefits": [
+        "Free Next Day Delivery (UK) / International Shipping ✅",
+        "Natural On Cycle Support ✅",
+        "Maintain Liver Health ✅",
+        "Support Supplement ✅",
+        "Highest Rated Supplier ✅"
+      ],
+      "description_short": "When you're pushing your limits to build your ideal physique, your body's health must remain your top priority. MAX Labs On Cycle Support (OCS) is specifically formulated to protect and enhance your health during intense supplement cycles.",
+      "description": "<h3>On Cycle Support (Max Labs) – 60 caps</h3><h4>Introducing Your Ultimate Bodyguard During Any Supplement Cycle</h4><p>When you're pushing your limits to build your ideal physique, your body's health must remain your top priority. MAX Labs On Cycle Support (OCS) is specifically formulated to protect and enhance your health during intense supplement cycles. Combining potent, scientifically backed ingredients, OCS promotes overall wellness, allowing you to achieve your goals safely and effectively.</p><h3>Comprehensive Wellness Formula</h3><p>Max Labs On Cycle Support combines an array of premium, natural ingredients carefully chosen to safeguard your organs, support optimal bodily functions, and ensure you stay in peak condition throughout your supplement regimen. With each serving (2 capsules), you'll get:</p><ul><li><strong>Glucosamine Sulphate (150 mg):</strong> Known for supporting joint health and flexibility, glucosamine sulphate can enhance comfort and performance, reducing the stress placed on your joints during heavy training.</li><li><strong>Pomegranate Extract (140 mg):</strong> Rich in antioxidants, pomegranate extract supports cardiovascular health, fights oxidative stress, and promotes healthy circulation, crucial during intensive supplementation phases.</li><li><strong>Hawthorn Berry Extract (100 mg):</strong> This botanical extract is widely recognized for its heart-health benefits. Hawthorn helps manage healthy blood pressure and strengthens cardiovascular health, protecting your heart during strenuous physical activity.</li><li><strong>Turmeric Root Extract (100 mg):</strong> With powerful anti-inflammatory properties, turmeric supports liver function and reduces inflammation, assisting your body in managing the strain caused by supplement cycling.</li><li><strong>Celery Seed Extract (30 mg):</strong> Traditionally used to promote kidney health and blood pressure regulation, celery seed helps maintain fluid balance and reduces bloating, keeping you lean and feeling great.</li><li><strong>Artichoke Powder (30 mg):</strong> Artichoke supports liver detoxification, bile production, and digestive health, aiding the body's natural detox processes.</li><li><strong>Milk Thistle Extract (25 mg):</strong> Renowned for its liver-protective effects, milk thistle contains silymarin, which supports healthy liver enzyme levels and encourages natural detoxification processes, essential during supplement cycling.</li><li><strong>Grape Seed Extract (20 mg):</strong> A potent antioxidant, grape seed extract combats oxidative stress and inflammation, promoting cellular health and protecting vital organs from oxidative damage.</li><li><strong>NAC (N-Acetyl Cysteine) 200 mg:</strong> NAC is a powerhouse ingredient supporting liver detoxification and antioxidant protection. It helps maintain healthy liver function and overall immune system performance, vital during intense training periods.</li></ul><h3>Key Benefits of Choosing Max Labs On Cycle Support</h3><p>When it comes to cycling supplements, protection and prevention are key. Here's why athletes and fitness enthusiasts choose Max Labs OCS:</p><h4>Promotes Liver Detox & Healthy Enzyme Function</h4><p>OCS's potent blend, including milk thistle and NAC, supports liver detoxification pathways. These ingredients help maintain optimal liver enzyme levels, crucial for detoxifying and neutralizing harmful compounds during your supplement cycle.</p><h4>Enhances Heart & Blood Pressure Health</h4><p>With powerful botanicals like hawthorn berry and pomegranate extract, OCS aids cardiovascular health by supporting heart function, improving circulation, and maintaining healthy blood pressure levels.</p><h4>Supports Hormonal Balance & Recovery</h4><p>OCS provides essential nutrients and antioxidants, such as turmeric and grape seed extract, to support hormonal balance. This helps your body recover efficiently from intense training and supplementation, reducing downtime between cycles.</p><h4>Ideal During Any Supplement Cycle</h4><p>No matter your specific fitness goals, Max Labs OCS complements your regimen. Whether bulking, cutting, or enhancing athletic performance, this comprehensive support ensures your body remains protected and primed for peak performance.</p><h3>Athlete Trusted—Science Driven</h3><p>MAX Labs is dedicated to scientific integrity and athlete-centric formulations. Each ingredient in On Cycle Support is meticulously chosen based on clinical evidence and proven efficacy. Every capsule is formulated to meet stringent quality standards, delivering consistent, reliable support you can trust.</p><h3>How to Use Max Labs OCS for Best Results</h3><p>For optimal results, take two capsules daily, preferably with food. Consistent usage throughout your entire supplement cycle will yield the best protective and health-supporting benefits. Always combine Max Labs OCS with a balanced diet, regular exercise, and proper hydration for peak performance.</p><h3>Who Should Use Max Labs OCS?</h3><p>Max Labs On Cycle Support is ideal for:</p><ul><li>Bodybuilders and athletes undergoing supplement cycles</li><li>Fitness enthusiasts aiming to maintain optimal organ health</li><li>Individuals seeking comprehensive wellness support during intensive training periods</li></ul><h3>MAX Labs' Commitment to Quality</h3><p>At MAX Labs, quality assurance is our highest priority. Our supplements undergo rigorous third-party testing, ensuring purity, potency, and safety. When you choose MAX Labs, you're selecting a trusted brand dedicated to your health and performance.</p><h3>Conclusion: Protect Your Progress, Choose MAX Labs</h3><p>Your body deserves the best protection as you push towards your physical goals. Max Labs On Cycle Support offers comprehensive protection, helping you to achieve your ambitions safely and effectively. Keep your body in peak health and performance-ready throughout your supplement cycles.</p><p><strong>Trust MAX Labs On Cycle Support—fuel your progress and protect your body.</strong></p><p><em>MAX Labs—Science Driven. Athlete Trusted.</em></p>",
+      "vendor": "Max Labs",
+      "type": "Supplement",
+      "tags": ["liver", "heart", "organ-support", "cycle"],
+      "reviews": 20,
+      "rating_count": 20,
+      "sold": 195,
+      "in_stock": true,
+      "bulk_discounts": [
+        { "quantity": 3, "discount": 10 },
+        { "quantity": 6, "discount": 15 },
+        { "quantity": 9, "discount": 20 }
+      ],
+      "faqs": [
+        {
+          "question": "Is Max Labs OCS suitable for daily use?",
+          "answer": "Yes, it's designed for consistent daily use throughout your entire supplement cycle to maintain optimal protection."
+        },
+        {
+          "question": "Can Max Labs OCS be used with other supplements?",
+          "answer": "Absolutely! OCS is specifically formulated to support your body during cycles involving other supplements."
+        },
+        {
+          "question": "Are there any side effects associated with Max Labs OCS?",
+          "answer": "Max Labs OCS uses natural, high-quality ingredients generally considered safe. Always consult with a healthcare provider if you have pre-existing conditions or are taking medication."
+        }
+      ],
+      "guarantee": [
+        "Pharmaceutical grade",
+        "Manufactured in the UK",
+        "HPLC Tested",
+        "Free Next Day Delivery UK / Free International Shipping",
+        "Scientific-backed advice and assistance"
+      ],
+      "variants": [
+        {
+          "title": "60 Capsules (30 Day Supply)",
+          "price": 3899,
+          "sku": "ML-OCS-60"
+        },
+        {
+          "title": "120 Capsules (60 Day Supply)",
+          "price": 6999,
+          "sku": "ML-OCS-120"
+        }
+      ],
+      "images": [
+        "on-cycle-support-1.jpg",
+        "on-cycle-support-2.jpg",
+        "on-cycle-support-3.jpg",
+        "on-cycle-support-4.jpg"
+      ]
+    }
+  ]
+}

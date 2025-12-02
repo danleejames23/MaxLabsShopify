@@ -1,0 +1,67 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">{{ collection.title }}</h1>
+    <p class="page-subtitle">{{ collection.description | default: 'Premium supplements for peak performance' }}</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    {% if collection.products.size > 0 %}
+      <div class="product-grid">
+        {% for product in collection.products %}
+          <div class="product-card">
+            <div class="product-card-image">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+              {% else %}
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
+              {% endif %}
+              {% if product.compare_at_price > product.price %}
+                <span class="product-badge">Sale</span>
+              {% endif %}
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              <div class="product-card-rating">
+                <div class="stars">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
+              </div>
+              <div class="product-card-price">
+                <span class="product-price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+              <form action="/cart/add" method="post" class="add-to-cart-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="product-card-btn">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      {% if paginate.pages > 1 %}
+        <div class="pagination" style="text-align: center; margin-top: 50px;">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+    {% else %}
+      <div style="text-align: center; padding: 100px 0;">
+        <h2 style="font-family: var(--font-heading); margin-bottom: 20px;">No products found</h2>
+        <p style="color: var(--color-text-muted); margin-bottom: 30px;">Check back soon for new arrivals!</p>
+        <a href="/" class="btn btn-primary">Return Home</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

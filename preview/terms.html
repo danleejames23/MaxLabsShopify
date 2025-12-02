@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg"><link rel="apple-touch-icon" href="assets/logo.jpg"><title>Terms & Conditions | Max Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-logo">MAX LABS</div>
+      <h2>Age Verification Required</h2>
+      <p>You must be 21 years or older to enter this site.</p>
+      <div class="age-modal-buttons">
+        <button class="btn age-deny-btn" onclick="denyAge()">Exit</button>
+        <button class="btn btn-primary" onclick="confirmAge()">I'm 21+</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-wrapper">
+        <a href="index.html" class="header-logo">
+          <img src="assets/logotransparent.png" alt="Max Labs" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+          <span class="header-logo-text" style="display:none;">MAX LABS</span>
+        </a>
+        <nav class="header-nav">
+          <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a>
+          <a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="cart.html" class="header-cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    <a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="about.html">About Us</a>
+    <a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a>
+  </nav>
+
+  <main id="MainContent">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">Terms & Conditions</h1>
+        <p class="page-description">Last updated: December 1, 2024</p>
+      </div>
+    </div>
+
+    <div class="policy-content">
+      <p>By accessing and using the Max Labs website, you agree to be bound by these Terms and Conditions.</p>
+
+      <h2>Age Requirement</h2>
+      <p>You must be at least 21 years of age to purchase products from Max Labs. By placing an order, you confirm that you meet this age requirement.</p>
+
+      <h2>Product Information</h2>
+      <p>We strive to provide accurate product descriptions and images. However, we do not warrant that product descriptions or other content is accurate, complete, or error-free. These statements have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+
+      <h2>Pricing and Payment</h2>
+      <p>All prices are listed in USD and are subject to change without notice. We reserve the right to refuse or cancel orders at our discretion, including orders that appear to be placed by dealers or resellers.</p>
+
+      <h2>Shipping and Delivery</h2>
+      <p>Shipping times are estimates and not guaranteed. Max Labs is not responsible for delays caused by carriers, customs, or other factors outside our control.</p>
+
+      <h2>Returns and Refunds</h2>
+      <p>Please refer to our Returns & Refunds policy for detailed information about our 30-day money-back guarantee.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>Max Labs shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our products or website. Our total liability shall not exceed the amount paid for the product in question.</p>
+
+      <h2>Intellectual Property</h2>
+      <p>All content on this website, including text, graphics, logos, and images, is the property of Max Labs and protected by copyright laws.</p>
+
+      <h2>Governing Law</h2>
+      <p>These Terms shall be governed by the laws of the State of Florida, without regard to conflict of law principles.</p>
+
+      <h2>Contact</h2>
+      <p>For questions about these Terms, contact us at support@maxlabs.com.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom"><p class="footer-copyright">© 2024 Max Labs. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="maxlabs-chat-widget"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+

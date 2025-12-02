@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Unlock Your <span>Peak Performance</span>",
+        "subheading": "Science-Backed Supplements",
+        "description": "Premium, third-party tested supplements designed for serious athletes and fitness enthusiasts. Maximize your gains with pharmaceutical-grade formulas.",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all",
+        "secondary_button_text": "Learn More",
+        "secondary_button_link": "/pages/about-us"
+      }
+    },
+    "trust-badges": {
+      "type": "trust-badges",
+      "settings": {}
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Best Sellers",
+        "subtitle": "Our Most Popular Products",
+        "description": "Trusted by thousands of athletes worldwide. These top-rated supplements deliver real results.",
+        "collection": "all"
+      }
+    },
+    "features": {
+      "type": "features",
+      "settings": {
+        "title": "Why Choose Max Labs",
+        "subtitle": "The Max Labs Difference",
+        "description": "We're committed to providing the highest quality supplements backed by science and transparency."
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "title": "Customer Reviews",
+        "subtitle": "What Our Customers Say",
+        "description": "Join thousands of satisfied customers who have transformed their performance with Max Labs."
+      }
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {
+        "title": "Ready to Maximize Your Potential?",
+        "description": "Join the Max Labs community and get 15% off your first order. Plus, free shipping on orders over $75.",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust-badges",
+    "featured-products",
+    "features",
+    "testimonials",
+    "cta"
+  ]
+}

@@ -1,0 +1,92 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Search Results</h1>
+    <p class="page-subtitle">
+      {% if search.performed %}
+        {% if search.results_count == 0 %}
+          No results found for "{{ search.terms }}"
+        {% else %}
+          {{ search.results_count }} result{% if search.results_count > 1 %}s{% endif %} for "{{ search.terms }}"
+        {% endif %}
+      {% else %}
+        Search our store
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    <form action="/search" method="get" style="max-width: 600px; margin: 0 auto 60px;">
+      <div style="display: flex; gap: 15px;">
+        <input type="text" name="q" value="{{ search.terms | escape }}" class="form-input" placeholder="Search products..." style="flex: 1;">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="product-grid">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              <div class="product-card">
+                <div class="product-card-image">
+                  {% if item.featured_image %}
+                    <img src="{{ item.featured_image | image_url: width: 600 }}" alt="{{ item.title }}" loading="lazy">
+                  {% else %}
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ item.title }}" loading="lazy">
+                  {% endif %}
+                </div>
+                <div class="product-card-content">
+                  <h3 class="product-card-title">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                  </h3>
+                  <div class="product-card-price">
+                    <span class="product-price">{{ item.price | money }}</span>
+                  </div>
+                  <a href="{{ item.url }}" class="product-card-btn">View Product</a>
+                </div>
+              </div>
+            {% elsif item.object_type == 'article' %}
+              <article class="blog-card">
+                <div class="blog-card-image">
+                  {% if item.image %}
+                    <img src="{{ item.image | image_url: width: 600 }}" alt="{{ item.title }}" loading="lazy">
+                  {% else %}
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="{{ item.title }}" loading="lazy">
+                  {% endif %}
+                </div>
+                <div class="blog-card-content">
+                  <span style="color: var(--color-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Article</span>
+                  <h2 class="blog-card-title">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                  </h2>
+                  <p class="blog-card-excerpt">{{ item.content | strip_html | truncate: 150 }}</p>
+                  <a href="{{ item.url }}" class="blog-card-link">Read More →</a>
+                </div>
+              </article>
+            {% elsif item.object_type == 'page' %}
+              <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 30px;">
+                <span style="color: var(--color-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Page</span>
+                <h3 style="margin: 10px 0;"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">{{ item.content | strip_html | truncate: 150 }}</p>
+                <a href="{{ item.url }}" style="color: var(--color-primary);">View Page →</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        {% if paginate.pages > 1 %}
+          <div class="pagination" style="text-align: center; margin-top: 50px;">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% else %}
+        <div style="text-align: center; padding: 60px 0;">
+          <p style="color: var(--color-text-muted); margin-bottom: 30px;">Try searching for something else or browse our products.</p>
+          <a href="/collections/all" class="btn btn-primary">Browse All Products</a>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

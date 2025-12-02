@@ -1,0 +1,105 @@
+<section class="hero-section">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80" alt="Gym Background" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-badge">🔬 Lab Tested • Third Party Verified</span>
+      
+      <h1 class="hero-title">
+        {{ section.settings.heading }}
+      </h1>
+      
+      <p class="hero-description">
+        {{ section.settings.description }}
+      </p>
+      
+      <div class="hero-buttons">
+        <a href="{{ section.settings.button_link }}" class="btn btn-primary btn-large">
+          {{ section.settings.button_text }}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="{{ section.settings.secondary_button_link }}" class="btn btn-secondary btn-large">
+          {{ section.settings.secondary_button_text }}
+        </a>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number">50K+</div>
+          <div class="hero-stat-label">Happy Customers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">99%</div>
+          <div class="hero-stat-label">Purity Tested</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">4.9★</div>
+          <div class="hero-stat-label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Unlock Your <span>Peak Performance</span>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Science-Backed Supplements"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Premium, third-party tested supplements designed for serious athletes and fitness enthusiasts."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

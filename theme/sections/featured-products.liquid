@@ -1,0 +1,130 @@
+<section class="section featured-products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <p class="section-description">{{ section.settings.description }}</p>
+    </div>
+    
+    <div class="product-grid">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- if collection.products.size > 0 -%}
+        {%- for product in collection.products limit: 6 -%}
+          <div class="product-card">
+            <div class="product-card-image">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+              {%- else -%}
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
+              {%- endif -%}
+              {%- if product.compare_at_price > product.price -%}
+                <span class="product-badge">Sale</span>
+              {%- endif -%}
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              <div class="product-card-rating">
+                <div class="stars">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
+              </div>
+              <div class="product-card-price">
+                <span class="product-price">{{ product.price | money }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+              <form action="/cart/add" method="post" class="add-to-cart-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="product-card-btn">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Demo Products when no collection exists -->
+        {% assign demo_products = "Post Cycle Therapy,Alpha GPC,Ashwagandha,Tongkat Ali,Max Strength Turkesterone 1400mg,On Cycle Support" | split: "," %}
+        {% assign demo_prices = "49.99,39.99,29.99,44.99,59.99,54.99" | split: "," %}
+        {% assign demo_images = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80,https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=600&q=80,https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80,https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&q=80,https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=600&q=80,https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&q=80" | split: "," %}
+        
+        {% for i in (0..5) %}
+          <div class="product-card">
+            <div class="product-card-image">
+              <img src="{{ demo_images[i] }}" alt="{{ demo_products[i] }}" loading="lazy">
+              {% if i == 4 %}
+                <span class="product-badge">Best Seller</span>
+              {% endif %}
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">
+                <a href="/products/{{ demo_products[i] | handleize }}">{{ demo_products[i] }}</a>
+              </h3>
+              <div class="product-card-rating">
+                <div class="stars">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="rating-count">({{ i | plus: 47 }})</span>
+              </div>
+              <div class="product-card-price">
+                <span class="product-price">${{ demo_prices[i] }}</span>
+              </div>
+              <button type="button" class="product-card-btn" onclick="alert('Add products in Shopify Admin')">Add to Cart</button>
+            </div>
+          </div>
+        {% endfor %}
+      {%- endif -%}
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px;">
+      <a href="/collections/all" class="btn btn-secondary">View All Products</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our Most Popular Products"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Trusted by thousands of athletes worldwide."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

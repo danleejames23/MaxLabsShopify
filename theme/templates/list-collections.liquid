@@ -1,0 +1,33 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">All Collections</h1>
+    <p class="page-subtitle">Browse our complete range of premium supplements</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    <div class="product-grid">
+      {% for collection in collections %}
+        {% unless collection.handle == 'frontpage' %}
+          <div class="product-card">
+            <div class="product-card-image">
+              {% if collection.image %}
+                <img src="{{ collection.image | image_url: width: 600 }}" alt="{{ collection.title }}" loading="lazy">
+              {% else %}
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ collection.title }}" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">
+                <a href="{{ collection.url }}">{{ collection.title }}</a>
+              </h3>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 15px;">{{ collection.products_count }} products</p>
+              <a href="{{ collection.url }}" class="product-card-btn">View Collection</a>
+            </div>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

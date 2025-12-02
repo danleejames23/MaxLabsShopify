@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg"><link rel="apple-touch-icon" href="assets/logo.jpg"><title>Shop All Products | Max Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-logo">MAX LABS</div>
+      <h2>Age Verification Required</h2>
+      <p>You must be 21 years or older to enter this site.</p>
+      <div class="age-modal-buttons">
+        <button class="btn age-deny-btn" onclick="denyAge()">Exit</button>
+        <button class="btn btn-primary" onclick="confirmAge()">I'm 21+</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-wrapper">
+        <a href="index.html" class="header-logo">
+          <img src="assets/logotransparent.png" alt="Max Labs" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+          <span class="header-logo-text" style="display:none;">MAX LABS</span>
+        </a>
+        <nav class="header-nav">
+          <a href="index.html">Home</a>
+          <a href="shop.html" class="active">Shop</a>
+          <a href="about.html">About</a>
+          <a href="faq.html">FAQ</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="cart.html" class="header-cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Cart <span class="cart-count">0</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">×</button>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop All</a>
+    <a href="about.html">About Us</a>
+    <a href="faq.html">FAQ</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+
+  <main id="MainContent">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">All Products</h1>
+        <p class="page-description">Premium, third-party tested supplements for peak performance</p>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top: 40px;">
+      <div class="container">
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">MAX LABS</div>
+          <p>Premium science-backed supplements for peak performance.</p>
+          <div class="footer-social">
+            <a href="#">IG</a><a href="#">X</a><a href="#">FB</a><a href="#">YT</a>
+          </div>
+        </div>
+        <div class="footer-column"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li><li><a href="shop.html">Best Sellers</a></li></ul></div>
+        <div class="footer-column"><h4>Support</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQ</a></li><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li></ul></div>
+        <div class="footer-column"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2024 Max Labs. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="maxlabs-chat-widget"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+

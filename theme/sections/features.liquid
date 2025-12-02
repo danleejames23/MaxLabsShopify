@@ -1,0 +1,107 @@
+<section class="section features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <p class="section-description">{{ section.settings.description }}</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Pharmaceutical Grade</h3>
+        <p class="feature-description">All our supplements are manufactured in FDA-registered, GMP-certified facilities using the highest quality raw materials.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Third-Party Tested</h3>
+        <p class="feature-description">Every batch is independently tested for purity, potency, and safety. We publish all certificates of analysis for full transparency.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Science-Backed</h3>
+        <p class="feature-description">Our formulas are developed based on peer-reviewed research and clinical studies. No proprietary blends, just proven ingredients.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Optimal Dosing</h3>
+        <p class="feature-description">We use clinically effective doses of every ingredient. No under-dosing, no fillers, just what works.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="3" width="22" height="18" rx="2" ry="2"/>
+            <line x1="1" y1="9" x2="23" y2="9"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Fast Shipping</h3>
+        <p class="feature-description">Free shipping on orders over $75. Most orders ship within 24 hours and arrive in 2-5 business days.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Satisfaction Guaranteed</h3>
+        <p class="feature-description">Not satisfied? Get a full refund within 30 days, no questions asked. We stand behind every product we sell.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Choose Max Labs"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The Max Labs Difference"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We're committed to providing the highest quality supplements backed by science and transparency."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features"
+    }
+  ]
+}
+{% endschema %}

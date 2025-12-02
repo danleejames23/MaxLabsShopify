@@ -1,0 +1,55 @@
+<section class="section">
+  <div class="container">
+    <div class="cta-section">
+      <h2 class="cta-title">{{ section.settings.title }}</h2>
+      <p class="cta-description">{{ section.settings.description }}</p>
+      
+      <form class="newsletter-form" action="/contact#contact_form" method="post">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="email" name="contact[email]" class="newsletter-input" placeholder="Enter your email for 15% off" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      
+      <div style="margin-top: 30px;">
+        <a href="{{ section.settings.button_link }}" class="btn btn-secondary btn-large">{{ section.settings.button_text }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ready to Maximize Your Potential?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Join the Max Labs community and get 15% off your first order. Plus, free shipping on orders over £50."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Section"
+    }
+  ]
+}
+{% endschema %}
