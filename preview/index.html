@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
-  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
-  <link rel="apple-touch-icon" href="assets/logo.jpg">
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+  <link rel="apple-touch-icon" href="assets/favicon.jpg">
   <title>Max Labs | Premium Science-Backed Supplements</title>
   <meta name="description" content="Shop premium, third-party tested supplements at Max Labs. Turkesterone, Ashwagandha, Tongkat Ali & more.">
   
@@ -283,6 +283,7 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
   </style>
+  <link rel="stylesheet" href="enhanced-styles.css">
 </head>
 
 <body class="template-index">
@@ -290,12 +291,12 @@
   <!-- Age Verification Modal - Exact from theme.liquid -->
   <div class="age-modal" id="ageModal">
     <div class="age-modal-content">
-      <div class="age-modal-logo">MAX LABS</div>
+      <img src="assets/logotransparent.png" alt="Max Labs" class="age-modal-logo" style="height: 60px; width: auto;">
       <h2>Age Verification Required</h2>
-      <p>You must be 21 years or older to enter this site. By clicking "I'm 21+" you confirm that you are of legal age.</p>
+      <p>You must be 18 years or older to enter this site. By clicking "I'm 18+" you confirm that you are of legal age.</p>
       <div class="age-modal-buttons">
         <button class="btn age-deny-btn" onclick="denyAge()">Exit</button>
-        <button class="btn btn-primary" onclick="confirmAge()">I'm 21+</button>
+        <button class="btn btn-primary" onclick="confirmAge()">I'm 18+</button>
       </div>
     </div>
   </div>
@@ -449,17 +450,56 @@
       </div>
     </section>
 
-    <!-- Featured Products - From sections/featured-products.liquid -->
+    <!-- RAW Supplements Section -->
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-badge">Our Most Popular Products</span>
-          <h2 class="section-title">Best Sellers</h2>
-          <p class="section-description">Trusted by thousands of athletes worldwide. These top-rated supplements deliver real results.</p>
+          <span class="section-badge">Pure Plant-Based Power</span>
+          <h2 class="section-title">RAW Supplements</h2>
+          <p class="section-description">100% plant-based, sourced from nature's most powerful roots and herbs. Pure, potent, and high-concentration formulas with no fillers or artificial additives.</p>
         </div>
-        <div class="product-grid" id="productGrid"></div>
-        <div style="text-align: center; margin-top: 30px;">
-          <a href="shop.html" class="btn btn-secondary">View All Products</a>
+        <div class="product-grid" id="rawProductGrid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;"></div>
+      </div>
+    </section>
+
+    <!-- Cycle Support Section -->
+    <section class="section" style="background: linear-gradient(180deg, rgba(255, 165, 0, 0.03) 0%, transparent 100%);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge" style="background: rgba(255, 165, 0, 0.15); color: #FFA500;">Cycle Support</span>
+          <h2 class="section-title">On Cycle Support & Post Cycle Therapy</h2>
+          <p class="section-description">Protect your gains and support your body through every phase. Our OCS and PCT formulas are specifically designed to maintain optimal health during and after your supplement cycles.</p>
+        </div>
+        <div class="product-grid" id="cycleProductGrid" style="max-width: 800px; margin: 0 auto; grid-template-columns: repeat(2, 1fr);"></div>
+      </div>
+    </section>
+
+    <!-- Lifestyle Banner -->
+    <section class="lifestyle-banner" style="padding: 0; overflow: hidden;">
+      <div class="lifestyle-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
+        <div class="lifestyle-image" style="position: relative; aspect-ratio: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80" alt="Build Strength" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: all 0.5s;">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s;" class="lifestyle-overlay">
+            <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; padding: 12px 20px; border: 2px solid rgba(255,255,255,0.5);">Build Strength</span>
+          </div>
+        </div>
+        <div class="lifestyle-image" style="position: relative; aspect-ratio: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Train Hard" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: all 0.5s;">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s;" class="lifestyle-overlay">
+            <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; padding: 12px 20px; border: 2px solid rgba(255,255,255,0.5);">Train Hard</span>
+          </div>
+        </div>
+        <div class="lifestyle-image" style="position: relative; aspect-ratio: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=800&q=80" alt="Recover Fast" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: all 0.5s;">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s;" class="lifestyle-overlay">
+            <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; padding: 12px 20px; border: 2px solid rgba(255,255,255,0.5);">Recover Fast</span>
+          </div>
+        </div>
+        <div class="lifestyle-image" style="position: relative; aspect-ratio: 1; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800&q=80" alt="See Results" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: all 0.5s;">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s;" class="lifestyle-overlay">
+            <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; padding: 12px 20px; border: 2px solid rgba(255,255,255,0.5);">See Results</span>
+          </div>
         </div>
       </div>
     </section>
@@ -614,10 +654,35 @@
       <div class="footer-bottom">
         <p class="footer-copyright">© 2024 Max Labs. All rights reserved. These statements have not been evaluated by the FDA.</p>
         <div class="footer-payments">
-          <svg width="50" height="30" viewBox="0 0 50 30"><rect width="50" height="30" rx="4" fill="#1a1f71"/><text x="25" y="19" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">VISA</text></svg>
-          <svg width="50" height="30" viewBox="0 0 50 30"><rect width="50" height="30" rx="4" fill="#eb001b"/><circle cx="20" cy="15" r="10" fill="#eb001b"/><circle cx="30" cy="15" r="10" fill="#f79e1b"/></svg>
-          <svg width="50" height="30" viewBox="0 0 50 30"><rect width="50" height="30" rx="4" fill="#003087"/><text x="25" y="19" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">PayPal</text></svg>
-          <svg width="50" height="30" viewBox="0 0 50 30"><rect width="50" height="30" rx="4" fill="#635bff"/><text x="25" y="19" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">Stripe</text></svg>
+          <!-- Visa -->
+          <svg width="42" height="26" viewBox="0 0 42 26" fill="none">
+            <rect width="42" height="26" rx="4" fill="#1434CB"/>
+            <path d="M17.5 17L19 9H21L19.5 17H17.5Z" fill="#FFF"/>
+            <path d="M27 9.2C26.5 9 25.8 8.8 25 8.8C23 8.8 21.5 9.8 21.5 11.2C21.5 12.3 22.5 12.9 23.2 13.2C24 13.5 24.2 13.8 24.2 14.1C24.2 14.6 23.6 14.8 23 14.8C22.2 14.8 21.7 14.7 21 14.4L20.7 14.3L20.5 16C21 16.2 21.9 16.4 22.9 16.4C25 16.4 26.4 15.4 26.4 13.9C26.4 13 25.9 12.4 24.7 11.9C24 11.6 23.6 11.4 23.6 11C23.6 10.7 24 10.4 24.7 10.4C25.4 10.4 25.9 10.5 26.2 10.6L26.4 10.7L27 9.2Z" fill="#FFF"/>
+            <path d="M30.5 9H29C28.5 9 28.1 9.1 27.9 9.6L25 17H27.2L27.6 15.8H30.3L30.5 17H32.5L30.5 9ZM28.2 14.2C28.3 13.7 29 11.8 29 11.8L29.2 11.2L29.3 11.8C29.3 11.8 29.7 13.6 29.8 14.2H28.2Z" fill="#FFF"/>
+            <path d="M15.5 9L13.5 14.2L13.2 13C12.8 11.7 11.6 10.3 10.2 9.6L12 17H14.3L17.8 9H15.5Z" fill="#FFF"/>
+            <path d="M11.5 9H8.5V9.1C11 9.7 12.7 11.3 13.2 13L12.5 9.6C12.4 9.2 12 9 11.5 9Z" fill="#FAA61A"/>
+          </svg>
+          <!-- Mastercard -->
+          <svg width="42" height="26" viewBox="0 0 42 26" fill="none">
+            <rect width="42" height="26" rx="4" fill="#1A1F2E"/>
+            <circle cx="16" cy="13" r="7" fill="#EB001B"/>
+            <circle cx="26" cy="13" r="7" fill="#F79E1B"/>
+            <path d="M21 7.5C22.5 8.7 23.5 10.7 23.5 13C23.5 15.3 22.5 17.3 21 18.5C19.5 17.3 18.5 15.3 18.5 13C18.5 10.7 19.5 8.7 21 7.5Z" fill="#FF5F00"/>
+          </svg>
+          <!-- PayPal -->
+          <svg width="42" height="26" viewBox="0 0 42 26" fill="none">
+            <rect width="42" height="26" rx="4" fill="#003087"/>
+            <path d="M15 7H18C20 7 21 8 20.8 9.5C20.5 11.5 19 13 17 13H16L15.5 16H13.5L15 7Z" fill="#FFF"/>
+            <path d="M17 9H18C18.6 9 19 9.3 18.9 9.9C18.7 10.7 18.2 11.2 17.4 11.2H16.6L17 9Z" fill="#003087"/>
+            <path d="M22 7H25C27 7 28 8 27.8 9.5C27.5 11.5 26 13 24 13H23L22.5 16H20.5L22 7Z" fill="#009CDE"/>
+            <path d="M24 9H25C25.6 9 26 9.3 25.9 9.9C25.7 10.7 25.2 11.2 24.4 11.2H23.6L24 9Z" fill="#003087"/>
+          </svg>
+          <!-- Stripe -->
+          <svg width="42" height="26" viewBox="0 0 42 26" fill="none">
+            <rect width="42" height="26" rx="4" fill="#635BFF"/>
+            <path d="M19.5 11.2C19.5 10.6 20 10.3 20.8 10.3C22 10.3 23.4 10.7 24.6 11.3V8.2C23.3 7.7 22 7.5 20.8 7.5C17.8 7.5 16 9 16 11.4C16 15.2 21.2 14.6 21.2 16.2C21.2 16.9 20.6 17.2 19.7 17.2C18.4 17.2 16.8 16.6 15.5 15.9V19C16.9 19.6 18.4 19.8 19.7 19.8C22.8 19.8 24.7 18.4 24.7 16C24.7 11.9 19.5 12.6 19.5 11.2Z" fill="#FFF"/>
+          </svg>
         </div>
       </div>
     </div>

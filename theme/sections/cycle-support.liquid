@@ -1,0 +1,105 @@
+<section class="section cycle-support">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <p class="section-description">{{ section.settings.description }}</p>
+    </div>
+    
+    <div class="cycle-support-grid">
+      {% assign cycle_handles = 'on-cycle-support,post-cycle-therapy' | split: ',' %}
+      {% for product in collections.all.products %}
+        {% if cycle_handles contains product.handle %}
+          <div class="product-card cycle-card">
+            <div class="product-card-image">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+              {% endif %}
+              {% if product.compare_at_price > product.price %}
+                <span class="product-badge">Sale</span>
+              {% endif %}
+            </div>
+            <div class="product-card-content">
+              <span class="product-category cycle-category">Cycle Support</span>
+              <h3 class="product-card-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              <div class="product-card-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-count">({{ product.metafields.reviews.rating_count | default: '20' }})</span>
+              </div>
+              <div class="product-card-price">
+                <span class="product-price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+              <a href="{{ product.url }}" class="product-card-btn">View Product</a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cycle-support-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cycle-card {
+    border: 2px solid rgba(0, 255, 127, 0.2);
+  }
+  
+  .cycle-card:hover {
+    border-color: var(--color-primary);
+  }
+  
+  .cycle-category {
+    background: rgba(255, 165, 0, 0.15) !important;
+    color: #FFA500 !important;
+  }
+  
+  @media (max-width: 768px) {
+    .cycle-support-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cycle Support Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "On Cycle Support & Post Cycle Therapy"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Cycle Support"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Protect your gains and support your body through every phase. Our OCS and PCT formulas are specifically designed to maintain optimal health during and after your supplement cycles."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cycle Support Products"
+    }
+  ]
+}
+{% endschema %}

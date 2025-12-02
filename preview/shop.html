@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/jpeg" href="assets/logo.jpg"><link rel="apple-touch-icon" href="assets/logo.jpg"><title>Shop All Products | Max Labs</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg"><link rel="apple-touch-icon" href="assets/favicon.jpg"><title>Shop All Products | Max Labs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-</head>
+<link rel="stylesheet" href="enhanced-styles.css"></head>
 <body>
   <div class="age-modal" id="ageModal">
     <div class="age-modal-content">
@@ -69,7 +69,33 @@
 
     <section class="section" style="padding-top: 40px;">
       <div class="container">
-        <div class="product-grid" id="productGrid"></div>
+        <!-- Brand Introduction -->
+        <div style="text-align: center; max-width: 900px; margin: 0 auto 60px; padding: 40px;">
+          <span class="section-badge" style="display: inline-block; background: rgba(0, 255, 127, 0.1); color: var(--color-primary); padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">The Max Labs Difference</span>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #00FF7F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Innovative Supplements</h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text-muted); margin-bottom: 30px;">At Max Labs, we believe in the power of pure, raw ingredients combined with cutting-edge science. Every product is crafted with premium-grade compounds, rigorously tested for purity and potency, delivering results you can trust.</p>
+          
+          <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(0, 255, 127, 0.05); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00FF7F" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Innovative Formulas
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(0, 255, 127, 0.05); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00FF7F" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              Raw Ingredients
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(0, 255, 127, 0.05); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00FF7F" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Lab Tested
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(0, 255, 127, 0.05); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00FF7F" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Premium Quality
+            </span>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;"></div>
       </div>
     </section>
   </main>
@@ -96,4 +122,5 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 

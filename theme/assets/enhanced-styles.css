@@ -1,0 +1,855 @@
+/* ============================================
+   MAX LABS - ENHANCED VISUAL STYLES
+   Premium E-Commerce Theme
+   ============================================ */
+
+/* ============================================
+   GLOBAL ENHANCEMENTS
+   ============================================ */
+
+/* Animated gradient background for body */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(0, 255, 127, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 255, 127, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 255, 127, 0.3);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00FF7F, #00CC66);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00CC66, #00FF7F);
+}
+
+/* ============================================
+   ENHANCED BUTTONS
+   ============================================ */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+  box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 30px rgba(0, 255, 127, 0.5);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  position: relative;
+  background: transparent;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#000, #000), linear-gradient(135deg, #00FF7F, #00CC66);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.btn-secondary:hover {
+  background-image: linear-gradient(135deg, #00FF7F, #00CC66), linear-gradient(135deg, #00FF7F, #00CC66);
+  color: #000;
+  box-shadow: 0 8px 30px rgba(0, 255, 127, 0.4);
+}
+
+/* ============================================
+   ENHANCED HERO SECTION
+   ============================================ */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, #000 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  animation: pulse-glow 2s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 255, 127, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 127, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 127, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 255, 127, 0.5); }
+}
+
+.hero-title {
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.hero-title span {
+  background: linear-gradient(135deg, #00FF7F, #50FF9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  position: relative;
+}
+
+.hero-title span::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #00FF7F, #50FF9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(20px);
+  opacity: 0.7;
+}
+
+.hero-stat {
+  position: relative;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-stat-number {
+  background: linear-gradient(135deg, #00FF7F, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ENHANCED TRUST BADGES
+   ============================================ */
+
+.trust-badges {
+  background: linear-gradient(180deg, rgba(0, 255, 127, 0.02) 0%, transparent 100%);
+  position: relative;
+}
+
+.trust-badge {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.8) 0%, rgba(20, 20, 20, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trust-badge:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 127, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 127, 0.1);
+}
+
+.trust-badge-icon {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, rgba(0, 255, 127, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.trust-badge:nth-child(2) .trust-badge-icon { animation-delay: 0.5s; }
+.trust-badge:nth-child(3) .trust-badge-icon { animation-delay: 1s; }
+.trust-badge:nth-child(4) .trust-badge-icon { animation-delay: 1.5s; }
+
+/* ============================================
+   ENHANCED PRODUCT CARDS
+   ============================================ */
+
+.product-card {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 127, 0.3) 50%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 255, 127, 0.15);
+}
+
+.product-card-image {
+  border-radius: 16px 16px 0 0;
+  position: relative;
+}
+
+.product-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(13, 13, 13, 1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.product-badge {
+  background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+  box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4);
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.product-card-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.product-card-title a {
+  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .product-card-title a {
+  background: linear-gradient(135deg, #00FF7F 0%, #50FF9F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-price {
+  background: linear-gradient(135deg, #00FF7F 0%, #50FF9F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+.product-card-btn {
+  background: transparent;
+  border: 2px solid rgba(0, 255, 127, 0.5);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-card-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.product-card-btn:hover::before {
+  width: 100%;
+}
+
+.product-card-btn:hover {
+  border-color: #00FF7F;
+  color: #000;
+  box-shadow: 0 5px 20px rgba(0, 255, 127, 0.3);
+}
+
+/* Star ratings */
+.stars {
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================
+   ENHANCED FEATURES SECTION
+   ============================================ */
+
+.features {
+  position: relative;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 255, 127, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.feature-card {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00FF7F, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 255, 127, 0.2);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(0, 255, 127, 0.1);
+}
+
+.feature-icon {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 255, 127, 0.05) 100%);
+  border: 2px solid rgba(0, 255, 127, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 50px rgba(0, 255, 127, 0.4);
+}
+
+.feature-title {
+  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ENHANCED TESTIMONIALS
+   ============================================ */
+
+.testimonial-card {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 80px;
+  font-family: Georgia, serif;
+  color: rgba(0, 255, 127, 0.15);
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 127, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-stars {
+  color: #FFD700;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.testimonial-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ccc;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00FF7F, #00CC66);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.testimonial-name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.testimonial-verified {
+  font-size: 0.8rem;
+  color: #00FF7F;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ============================================
+   ENHANCED CTA SECTION
+   ============================================ */
+
+.cta-section {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.08) 0%, rgba(0, 0, 0, 0.95) 100%);
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(135deg, rgba(0, 255, 127, 0.08) 0%, rgba(0, 0, 0, 0.95) 100%),
+    linear-gradient(135deg, rgba(0, 255, 127, 0.5) 0%, rgba(0, 255, 127, 0.1) 50%, rgba(0, 255, 127, 0.5) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(0, 255, 127, 0.1), transparent 30%);
+  animation: rotate-gradient 10s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  100% { transform: rotate(360deg); }
+}
+
+.cta-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-title {
+  background: linear-gradient(135deg, #fff 0%, #00FF7F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.newsletter-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+  border-color: #00FF7F;
+  box-shadow: 0 0 20px rgba(0, 255, 127, 0.2);
+}
+
+/* ============================================
+   ENHANCED SECTION HEADERS
+   ============================================ */
+
+.section-badge {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 255, 127, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.section-title {
+  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ENHANCED FOOTER
+   ============================================ */
+
+.site-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.5), transparent);
+}
+
+.footer-logo {
+  background: linear-gradient(135deg, #00FF7F, #50FF9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-social a {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: linear-gradient(135deg, #00FF7F, #00CC66);
+  border-color: #00FF7F;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 255, 127, 0.3);
+}
+
+.footer-column a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.footer-column a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #00FF7F, transparent);
+  transition: width 0.3s ease;
+}
+
+.footer-column a:hover::after {
+  width: 100%;
+}
+
+.footer-column a:hover {
+  color: #00FF7F;
+  padding-left: 5px;
+}
+
+/* ============================================
+   ENHANCED PAGE HEADERS
+   ============================================ */
+
+.page-header {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.05) 0%, transparent 50%, rgba(0, 255, 127, 0.03) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(0, 255, 127, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-title {
+  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ENHANCED FORMS
+   ============================================ */
+
+.form-input,
+.form-textarea,
+.form-select {
+  background: rgba(13, 13, 13, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: #00FF7F;
+  box-shadow: 0 0 20px rgba(0, 255, 127, 0.15);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.form-label {
+  color: #ccc;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   ENHANCED CONTACT PAGE
+   ============================================ */
+
+.contact-form {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+}
+
+.contact-info-item {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.contact-info-item:hover {
+  border-color: rgba(0, 255, 127, 0.3);
+  transform: translateX(5px);
+}
+
+.contact-info-icon {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, rgba(0, 255, 127, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+/* ============================================
+   ENHANCED FAQ PAGE
+   ============================================ */
+
+.faq-item {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(0, 255, 127, 0.2);
+}
+
+.faq-question {
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: rgba(0, 255, 127, 0.05);
+}
+
+.faq-question.active {
+  background: linear-gradient(135deg, rgba(0, 255, 127, 0.1) 0%, transparent 100%);
+}
+
+/* ============================================
+   ENHANCED CART PAGE
+   ============================================ */
+
+.cart-items {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  background: rgba(0, 255, 127, 0.02);
+}
+
+.cart-summary {
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  border: 1px solid rgba(0, 255, 127, 0.2);
+  border-radius: 24px;
+}
+
+/* ============================================
+   LOADING ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ============================================
+   MOBILE ENHANCEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Disable heavy animations on mobile for performance */
+  .cta-section::before {
+    animation: none;
+  }
+  
+  /* Better touch targets */
+  .btn {
+    min-height: 48px;
+  }
+  
+  .footer-social a {
+    width: 48px;
+    height: 48px;
+  }
+  
+  /* Simpler gradients on mobile */
+  .product-card::before {
+    display: none;
+  }
+  
+  .hero-stat {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Better mobile cards */
+  .feature-card,
+  .testimonial-card {
+    padding: 25px;
+  }
+  
+  .testimonial-card::before {
+    font-size: 50px;
+    top: 10px;
+    left: 20px;
+  }
+  
+  /* Mobile footer */
+  .footer-column a::after {
+    display: none;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+}
+
+.glow-box {
+  box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+}
+
+.gradient-border {
+  border: 2px solid transparent;
+  background-image: linear-gradient(#000, #000), linear-gradient(135deg, #00FF7F, #00CC66);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}

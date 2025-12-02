@@ -16,14 +16,25 @@
       "type": "trust-badges",
       "settings": {}
     },
-    "featured-products": {
-      "type": "featured-products",
+    "raw-products": {
+      "type": "raw-products",
       "settings": {
-        "title": "Best Sellers",
-        "subtitle": "Our Most Popular Products",
-        "description": "Trusted by thousands of athletes worldwide. These top-rated supplements deliver real results.",
-        "collection": "all"
+        "title": "RAW Supplements",
+        "subtitle": "Pure Plant-Based Power",
+        "description": "100% plant-based, sourced from nature's most powerful roots and herbs. Pure, potent, and high-concentration formulas with no fillers or artificial additives."
       }
+    },
+    "cycle-support": {
+      "type": "cycle-support",
+      "settings": {
+        "title": "On Cycle Support & Post Cycle Therapy",
+        "subtitle": "Cycle Support",
+        "description": "Protect your gains and support your body through every phase. Our OCS and PCT formulas are specifically designed to maintain optimal health during and after your supplement cycles."
+      }
+    },
+    "lifestyle-banner": {
+      "type": "lifestyle-banner",
+      "settings": {}
     },
     "features": {
       "type": "features",
@@ -45,7 +56,7 @@
       "type": "cta",
       "settings": {
         "title": "Ready to Maximize Your Potential?",
-        "description": "Join the Max Labs community and get 15% off your first order. Plus, free shipping on orders over $75.",
+        "description": "Join the Max Labs community and get 15% off your first order. Plus, FREE UK Next Day Delivery on all orders!",
         "button_text": "Shop Now",
         "button_link": "/collections/all"
       }
@@ -54,7 +65,9 @@
   "order": [
     "hero",
     "trust-badges",
-    "featured-products",
+    "raw-products",
+    "cycle-support",
+    "lifestyle-banner",
     "features",
     "testimonials",
     "cta"

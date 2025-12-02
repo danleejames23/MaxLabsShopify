@@ -1,0 +1,90 @@
+<section class="section raw-products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <p class="section-description">{{ section.settings.description }}</p>
+    </div>
+    
+    <div class="product-grid raw-products-grid">
+      {% assign raw_handles = 'ashwagandha,tongkat-ali,max-strength-turkesterone-1400mg,alpha-gpc' | split: ',' %}
+      {% for product in collections.all.products %}
+        {% if raw_handles contains product.handle %}
+          <div class="product-card">
+            <div class="product-card-image">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+              {% endif %}
+              {% if product.compare_at_price > product.price %}
+                <span class="product-badge">Sale</span>
+              {% endif %}
+            </div>
+            <div class="product-card-content">
+              <span class="product-category">Max Labs - RAW Supplement</span>
+              <h3 class="product-card-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              <div class="product-card-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-count">({{ product.metafields.reviews.rating_count | default: '90' }})</span>
+              </div>
+              <div class="product-card-price">
+                <span class="product-price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+              <a href="{{ product.url }}" class="product-card-btn">View Product</a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    background: rgba(0, 255, 127, 0.1);
+    border-radius: 4px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RAW Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "RAW Supplements"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Pure Plant-Based Power"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "100% plant-based, sourced from nature's most powerful roots and herbs. Pure, potent, and high-concentration formulas with no fillers or artificial additives."
+    }
+  ],
+  "presets": [
+    {
+      "name": "RAW Products"
+    }
+  ]
+}
+{% endschema %}

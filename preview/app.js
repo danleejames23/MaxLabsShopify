@@ -495,18 +495,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modal) modal.classList.add('hidden');
   }
 
-  // Render products on shop/home page
-  const grid = document.getElementById('productGrid');
-  if (grid) {
-    grid.innerHTML = products.map(p => {
-      const stars = p.rating ? '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '') : '★★★★★';
-      return `
+  // Define product categories
+  const rawProductIds = [2, 3, 4, 5]; // Alpha GPC, Ashwagandha, Tongkat Ali, Turkesterone
+  const cycleProductIds = [1, 6]; // PCT, OCS
+
+  // Helper function to render a product card
+  function renderProductCard(p, category) {
+    const stars = p.rating ? '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '') : '★★★★★';
+    const categoryLabel = category === 'raw' ? 'Max Labs - RAW Supplement' : 'Cycle Support';
+    const categoryStyle = category === 'raw' 
+      ? 'background: rgba(0, 255, 127, 0.1); color: #00FF7F;'
+      : 'background: rgba(255, 165, 0, 0.15); color: #FFA500;';
+    
+    return `
       <div class="product-card">
         <div class="product-card-image">
           <img src="${p.image}" alt="${p.title}">
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
         </div>
         <div class="product-card-content">
+          <span style="display: inline-block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; padding: 4px 10px; border-radius: 4px; ${categoryStyle}">${categoryLabel}</span>
           <h3 class="product-card-title"><a href="product.html?id=${p.id}">${p.title}</a></h3>
           <div class="product-card-rating">
             <div class="stars">${stars}</div>
@@ -528,7 +536,30 @@ document.addEventListener('DOMContentLoaded', function() {
           <button class="product-card-btn" onclick="addToCart(${p.id})">Add to Cart</button>
         </div>
       </div>
-    `}).join('');
+    `;
+  }
+
+  // Render RAW products grid
+  const rawGrid = document.getElementById('rawProductGrid');
+  if (rawGrid) {
+    const rawProducts = products.filter(p => rawProductIds.includes(p.id));
+    rawGrid.innerHTML = rawProducts.map(p => `<div style="flex: 0 1 280px; max-width: 320px;">${renderProductCard(p, 'raw')}</div>`).join('');
+  }
+
+  // Render Cycle Support products grid
+  const cycleGrid = document.getElementById('cycleProductGrid');
+  if (cycleGrid) {
+    const cycleProducts = products.filter(p => cycleProductIds.includes(p.id));
+    cycleGrid.innerHTML = cycleProducts.map(p => renderProductCard(p, 'cycle')).join('');
+  }
+
+  // Render all products on shop page
+  const grid = document.getElementById('productGrid');
+  if (grid) {
+    grid.innerHTML = products.map(p => {
+      const category = rawProductIds.includes(p.id) ? 'raw' : 'cycle';
+      return `<div style="flex: 0 1 280px; max-width: 320px;">${renderProductCard(p, category)}</div>`;
+    }).join('');
   }
 
   // Render product detail page

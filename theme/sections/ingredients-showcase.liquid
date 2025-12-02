@@ -1,0 +1,140 @@
+<section class="section ingredients-showcase">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Natural Power</span>
+      <h2 class="section-title">Pure Ingredients, Real Results</h2>
+      <p class="section-description">We source only the finest plant-based ingredients from around the world. Each herb and root is carefully selected for maximum potency and purity.</p>
+    </div>
+    
+    <div class="ingredients-grid">
+      <div class="ingredient-card">
+        <div class="ingredient-image">
+          <img src="{{ 'ashwagandha root.webp' | asset_url }}" alt="Ashwagandha Root" loading="lazy">
+        </div>
+        <div class="ingredient-content">
+          <h3>Ashwagandha Root</h3>
+          <p>Ancient adaptogenic herb for stress relief and testosterone support</p>
+        </div>
+      </div>
+      
+      <div class="ingredient-card">
+        <div class="ingredient-image">
+          <img src="{{ 'tongkat ali.jpg' | asset_url }}" alt="Tongkat Ali" loading="lazy">
+        </div>
+        <div class="ingredient-content">
+          <h3>Tongkat Ali</h3>
+          <p>Malaysian ginseng known for boosting energy and vitality</p>
+        </div>
+      </div>
+      
+      <div class="ingredient-card">
+        <div class="ingredient-image">
+          <img src="{{ 'Turkesterone Plant.webp' | asset_url }}" alt="Turkesterone Plant" loading="lazy">
+        </div>
+        <div class="ingredient-content">
+          <h3>Turkesterone</h3>
+          <p>Plant-derived ecdysteroid for natural muscle growth</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ingredients-showcase {
+    background: linear-gradient(180deg, rgba(0, 255, 127, 0.02) 0%, transparent 50%, rgba(0, 255, 127, 0.02) 100%);
+  }
+  
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .ingredient-card {
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .ingredient-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 255, 127, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 127, 0.1);
+  }
+  
+  .ingredient-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  
+  .ingredient-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: brightness(0.8) saturate(0.9);
+  }
+  
+  .ingredient-card:hover .ingredient-image img {
+    transform: scale(1.1);
+    filter: brightness(1) saturate(1);
+  }
+  
+  .ingredient-content {
+    padding: 25px;
+    text-align: center;
+  }
+  
+  .ingredient-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .ingredient-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 1024px) {
+    .ingredients-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .ingredients-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .ingredient-content {
+      padding: 20px;
+    }
+    
+    .ingredient-content h3 {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ingredients Showcase",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Ingredients Showcase"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,190 @@
+<section class="section brand-intro">
+  <div class="container">
+    <div class="brand-intro-content">
+      <span class="section-badge">{{ section.settings.badge }}</span>
+      <h2 class="brand-intro-title">{{ section.settings.title }}</h2>
+      <p class="brand-intro-text">{{ section.settings.description }}</p>
+      
+      <div class="brand-intro-features">
+        <div class="brand-intro-feature">
+          <div class="brand-intro-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <span>Innovative Formulas</span>
+        </div>
+        <div class="brand-intro-feature">
+          <div class="brand-intro-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span>Raw Ingredients</span>
+        </div>
+        <div class="brand-intro-feature">
+          <div class="brand-intro-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <span>Lab Tested</span>
+        </div>
+        <div class="brand-intro-feature">
+          <div class="brand-intro-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <span>Premium Quality</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-intro {
+    padding: 80px 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 127, 0.02) 50%, transparent 100%);
+    position: relative;
+  }
+  
+  .brand-intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.3), transparent);
+  }
+  
+  .brand-intro-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .brand-intro-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #fff 0%, #00FF7F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .brand-intro-text {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 50px;
+  }
+  
+  .brand-intro-features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .brand-intro-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 25px;
+    background: rgba(0, 255, 127, 0.05);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  
+  .brand-intro-feature:hover {
+    background: rgba(0, 255, 127, 0.1);
+    border-color: rgba(0, 255, 127, 0.4);
+    transform: translateY(-3px);
+  }
+  
+  .brand-intro-icon {
+    color: var(--color-primary);
+  }
+  
+  .brand-intro-feature span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  @media (max-width: 768px) {
+    .brand-intro {
+      padding: 60px 0;
+    }
+    
+    .brand-intro-title {
+      font-size: 1.8rem;
+    }
+    
+    .brand-intro-text {
+      font-size: 1rem;
+      margin-bottom: 35px;
+      padding: 0 15px;
+    }
+    
+    .brand-intro-features {
+      gap: 15px;
+      padding: 0 10px;
+    }
+    
+    .brand-intro-feature {
+      padding: 12px 18px;
+      font-size: 0.8rem;
+    }
+    
+    .brand-intro-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Introduction",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "The Max Labs Difference"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Innovative Supplements"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "At Max Labs, we believe in the power of pure, raw ingredients combined with cutting-edge science. Every product is crafted with premium-grade compounds, rigorously tested for purity and potency, delivering results you can trust."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Introduction"
+    }
+  ]
+}
+{% endschema %}
