@@ -123,14 +123,49 @@ Replace files in `theme/assets/`:
 - **Fonts**: Google Fonts (Orbitron, Inter)
 - **Icons**: Custom SVG
 
+## 💼 Skills Demonstrated
+
+### Frontend Development
+- **HTML5** - Semantic markup, accessibility best practices
+- **CSS3** - Flexbox, Grid, Custom Properties, Animations
+- **JavaScript (ES6+)** - DOM manipulation, event handling, local storage
+- **Responsive Design** - Mobile-first approach, media queries
+
+### E-Commerce & Shopify
+- **Shopify Theme Development** - Liquid templating language
+- **Shopify 2.0 Architecture** - Sections, blocks, JSON templates
+- **Theme Customization** - Settings schema, dynamic content
+- **Product Management** - CSV imports, variant handling
+
+### Design & UX
+- **UI/UX Design** - Conversion-focused layouts
+- **Dark Theme Design** - Modern aesthetic with accessibility
+- **Typography** - Font pairing, hierarchy, readability
+- **Visual Design** - Color theory, spacing, visual balance
+
+### Development Practices
+- **Version Control** - Git, GitHub
+- **Code Organization** - Modular CSS, reusable components
+- **Performance** - Optimized assets, lazy loading
+- **Cross-Browser Compatibility** - Tested across major browsers
+
+### Additional Skills
+- **SEO** - Meta tags, structured data, semantic HTML
+- **Payment Integration** - Stripe, Shopify Payments
+- **Content Management** - Blog, pages, collections
+- **Customer Experience** - Cart functionality, checkout flow
+
 ## 📄 License
 
 This project is created for portfolio demonstration purposes.
 
 ## 👤 Author
 
-Built with Windsurf AI Assistant
+**Dan Lee James**  
+Full Stack Developer | Shopify Expert
+
+- GitHub: [@danleejames23](https://github.com/danleejames23)
 
 ---
 
-*This is a portfolio project demonstrating Shopify theme development capabilities.*
+*This project demonstrates end-to-end Shopify theme development, from design to deployment.*
