@@ -2,6 +2,19 @@
 
 ![Max Labs](preview/assets/logo.jpg)
 
+## 💼 Hire Me on Upwork!
+
+**Looking for a Shopify Expert?** I build stunning, conversion-focused e-commerce stores from scratch. This project showcases my ability to deliver:
+
+✅ **Custom Shopify Themes** - Unique designs tailored to your brand  
+✅ **Mobile-First Development** - Responsive on all devices  
+✅ **Fast & SEO Optimized** - Built for performance and rankings  
+✅ **Complete Store Setup** - Products, payments, shipping - everything!  
+
+📩 **[Hire Me on Upwork](https://www.upwork.com/freelancers/~01ec5bf5b596b82fc9)** | 💬 Message me for your project!
+
+---
+
 A modern, dark-themed Shopify e-commerce theme designed for supplement and fitness brands. Built with performance, conversion optimization, and mobile-first design in mind.
 
 ## 🚀 Live Demo
@@ -162,10 +175,24 @@ This project is created for portfolio demonstration purposes.
 ## 👤 Author
 
 **Dan Lee James**  
-Full Stack Developer | Shopify Expert
+🛒 Shopify Expert | 💻 Full Stack Developer | 🎨 E-Commerce Specialist
 
-- GitHub: [@danleejames23](https://github.com/danleejames23)
+### What I Can Build For You:
+- 🏪 **Complete Shopify Stores** - From zero to launch
+- 🎨 **Custom Theme Development** - Unique designs, not templates
+- 🔧 **Store Customization** - Modify existing themes
+- 📱 **Mobile Optimization** - Responsive, fast-loading sites
+- 🛍️ **Product Setup** - Bulk uploads, variants, collections
+- 💳 **Payment & Shipping** - Full checkout configuration
+- 📈 **SEO & Speed** - Optimized for Google rankings
+
+### 📞 Let's Work Together!
+
+- 💼 **[Hire Me on Upwork](https://www.upwork.com/freelancers/~01ec5bf5b596b82fc9)**
+- 🐙 **GitHub**: [@danleejames23](https://github.com/danleejames23)
 
 ---
 
-*This project demonstrates end-to-end Shopify theme development, from design to deployment.*
+⭐ **If you like this project, give it a star!** ⭐
+
+*Ready to build your dream store? [Contact me on Upwork](https://www.upwork.com/freelancers/~01ec5bf5b596b82fc9) - I respond within 24 hours!*
