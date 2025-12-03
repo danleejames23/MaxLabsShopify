@@ -11,20 +11,19 @@
       {%- if collection.products.size > 0 -%}
         {%- for product in collection.products limit: 6 -%}
           <div class="product-card">
-            <div class="product-card-image">
-              {%- if product.featured_image -%}
-                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
-              {%- else -%}
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
-              {%- endif -%}
-              {%- if product.compare_at_price > product.price -%}
-                <span class="product-badge">Sale</span>
-              {%- endif -%}
-            </div>
-            <div class="product-card-content">
-              <h3 class="product-card-title">
-                <a href="{{ product.url }}">{{ product.title }}</a>
-              </h3>
+            <a href="{{ product.url }}" class="product-card-link">
+              <div class="product-card-image">
+                {%- if product.featured_image -%}
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+                {%- else -%}
+                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
+                {%- endif -%}
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="product-badge">Sale</span>
+                {%- endif -%}
+              </div>
+              <div class="product-card-content">
+                <h3 class="product-card-title">{{ product.title }}</h3>
               <div class="product-card-rating">
                 <div class="stars">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -41,12 +40,13 @@
                   <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
                 {%- endif -%}
               </div>
-              <form action="/cart/add" method="post" class="add-to-cart-form">
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                <input type="hidden" name="quantity" value="1">
-                <button type="submit" class="product-card-btn">Add to Cart</button>
-              </form>
             </div>
+            </a>
+            <form action="/cart/add" method="post" class="add-to-cart-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="product-card-btn">Add to Cart</button>
+            </form>
           </div>
         {%- endfor -%}
       {%- else -%}
@@ -57,31 +57,31 @@
         
         {% for i in (0..5) %}
           <div class="product-card">
-            <div class="product-card-image">
-              <img src="{{ demo_images[i] }}" alt="{{ demo_products[i] }}" loading="lazy">
-              {% if i == 4 %}
-                <span class="product-badge">Best Seller</span>
-              {% endif %}
-            </div>
-            <div class="product-card-content">
-              <h3 class="product-card-title">
-                <a href="/products/{{ demo_products[i] | handleize }}">{{ demo_products[i] }}</a>
-              </h3>
-              <div class="product-card-rating">
-                <div class="stars">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <a href="/products/{{ demo_products[i] | handleize }}" class="product-card-link">
+              <div class="product-card-image">
+                <img src="{{ demo_images[i] }}" alt="{{ demo_products[i] }}" loading="lazy">
+                {% if i == 4 %}
+                  <span class="product-badge">Best Seller</span>
+                {% endif %}
+              </div>
+              <div class="product-card-content">
+                <h3 class="product-card-title">{{ demo_products[i] }}</h3>
+                <div class="product-card-rating">
+                  <div class="stars">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </div>
+                  <span class="rating-count">({{ i | plus: 47 }})</span>
                 </div>
-                <span class="rating-count">({{ i | plus: 47 }})</span>
+                <div class="product-card-price">
+                  <span class="product-price">£{{ demo_prices[i] }}</span>
+                </div>
               </div>
-              <div class="product-card-price">
-                <span class="product-price">${{ demo_prices[i] }}</span>
-              </div>
-              <button type="button" class="product-card-btn" onclick="alert('Add products in Shopify Admin')">Add to Cart</button>
-            </div>
+            </a>
+            <button type="button" class="product-card-btn" onclick="alert('Add products in Shopify Admin')">Add to Cart</button>
           </div>
         {% endfor %}
       {%- endif -%}

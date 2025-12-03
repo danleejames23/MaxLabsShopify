@@ -1,11 +1,13 @@
-<div class="page-header">
-  <div class="container">
-    <h1 class="page-title">{{ blog.title }}</h1>
-    <p class="page-subtitle">Expert insights on supplements, fitness, and performance optimization</p>
+<div class="page-header" style="position: relative; padding: 35px 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.85) 100%); overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1486218119243-13883505764c?w=1920&q=80') center/cover; opacity: 0.3;"></div>
+  <div class="container" style="position: relative; z-index: 1; text-align: center;">
+    <span style="display: inline-block; background: rgba(0, 255, 127, 0.12); color: #00FF7F; padding: 5px 14px; border-radius: 50px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Latest Articles</span>
+    <h1 class="page-title" style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #fff 0%, #00FF7F 50%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{{ blog.title | default: 'Blog' }}</h1>
+    <p class="page-subtitle" style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 500px; margin: 0 auto;">Expert insights on supplements, fitness, and performance optimization</p>
   </div>
 </div>
 
-<div class="page-content">
+<div class="page-content" style="padding-top: 30px;">
   <div class="container">
     {% if blog.articles.size > 0 %}
       <div class="blog-grid">
@@ -45,23 +47,69 @@
         </div>
       {% endif %}
     {% else %}
-      <!-- Demo blog posts when no articles exist -->
+      <!-- 3 Ingredient Blog Articles -->
       <div class="blog-grid">
         <article class="blog-card">
           <div class="blog-card-image">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Blog Post" loading="lazy">
+            <img src="{{ 'ashwagandha root.webp' | asset_url }}" alt="Ashwagandha Root" loading="lazy">
           </div>
           <div class="blog-card-content">
             <div class="blog-card-meta">
-              <span>{{ 'now' | date: '%B %d, %Y' }}</span>
+              <span>December 1, 2024</span>
               <span>•</span>
               <span>Max Labs Team</span>
             </div>
             <h2 class="blog-card-title">
-              <a href="#">The Ultimate Guide to Turkesterone: Benefits, Dosage & Results</a>
+              <a href="/blogs/news/ashwagandha">Ashwagandha: The Ancient Adaptogen for Stress & Performance</a>
             </h2>
-            <p class="blog-card-excerpt">Discover everything you need to know about Turkesterone, the natural anabolic compound that's taking the fitness world by storm...</p>
-            <a href="#" class="blog-card-link">
+            <p class="blog-card-excerpt">Ashwagandha (Withania somnifera) is a powerful adaptogenic herb used for over 3,000 years in Ayurvedic medicine. Studies show it can reduce cortisol by up to 30%, boost testosterone, and improve strength and recovery...</p>
+            <a href="/blogs/news/ashwagandha" class="blog-card-link">
+              Read More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="{{ 'tongkat ali.jpg' | asset_url }}" alt="Tongkat Ali Root" loading="lazy">
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span>November 28, 2024</span>
+              <span>•</span>
+              <span>Max Labs Team</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blogs/news/tongkat-ali">Tongkat Ali: The Natural Testosterone Booster That Works</a>
+            </h2>
+            <p class="blog-card-excerpt">Tongkat Ali (Eurycoma longifolia) is a Malaysian herb known as "Malaysian Ginseng". Clinical studies show it can increase testosterone by up to 37%, improve libido, reduce fatigue, and enhance athletic performance...</p>
+            <a href="/blogs/news/tongkat-ali" class="blog-card-link">
+              Read More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="{{ 'Turkesterone Plant.webp' | asset_url }}" alt="Turkesterone Plant" loading="lazy">
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span>November 25, 2024</span>
+              <span>•</span>
+              <span>Max Labs Team</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blogs/news/turkesterone">Turkesterone: The Plant-Based Muscle Builder</a>
+            </h2>
+            <p class="blog-card-excerpt">Turkesterone is a natural ecdysteroid found in the Ajuga turkestanica plant. Research suggests it can promote muscle protein synthesis, improve nitrogen retention, and support lean muscle growth without hormonal side effects...</p>
+            <a href="/blogs/news/turkesterone" class="blog-card-link">
               Read More
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>

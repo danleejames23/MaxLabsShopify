@@ -94,47 +94,47 @@
         <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 550px; margin: 6px auto 0;">100% plant-based, sourced from nature's most powerful roots and herbs. Pure, potent, and high-concentration formulas.</p>
       </div>
       
-      <div class="product-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;">
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1300px; margin: 0 auto;">
         {% for product in collection.products %}
           {% if raw_handles contains product.handle %}
-            <div class="product-card" style="flex: 0 1 260px; max-width: 300px;">
-              <div class="product-card-image">
-                {% if product.featured_image %}
-                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
-                {% else %}
-                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
-                {% endif %}
-                {% if product.compare_at_price > product.price %}
-                  <span class="product-badge">Sale</span>
-                {% endif %}
-              </div>
-              <div class="product-card-content">
-                <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(0, 255, 127, 0.1); color: #00FF7F;">RAW Supplement</span>
-                <h3 class="product-card-title">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-                <div class="product-card-rating">
-                  <div class="stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  </div>
-                  <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
-                </div>
-                <div class="product-card-price">
-                  <span class="product-price">{{ product.price | money }}</span>
+            <div class="product-card">
+              <a href="{{ product.url }}" class="product-card-link">
+                <div class="product-card-image">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+                  {% else %}
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
+                  {% endif %}
                   {% if product.compare_at_price > product.price %}
-                    <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                    <span class="product-badge">Sale</span>
                   {% endif %}
                 </div>
-                <form action="/cart/add" method="post" class="add-to-cart-form">
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <input type="hidden" name="quantity" value="1">
-                  <button type="submit" class="product-card-btn">Add to Cart</button>
-                </form>
-              </div>
+                <div class="product-card-content">
+                  <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(0, 255, 127, 0.1); color: #00FF7F;">RAW Supplement</span>
+                  <h3 class="product-card-title">{{ product.title }}</h3>
+                  <div class="product-card-rating">
+                    <div class="stars">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
+                  </div>
+                  <div class="product-card-price">
+                    <span class="product-price">{{ product.price | money }}</span>
+                    {% if product.compare_at_price > product.price %}
+                      <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              <form action="/cart/add" method="post" class="add-to-cart-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="product-card-btn">Add to Cart</button>
+              </form>
             </div>
           {% endif %}
         {% endfor %}
@@ -149,47 +149,47 @@
         <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 550px; margin: 6px auto 0;">Protect your gains and support your body through every phase with our OCS and PCT formulas.</p>
       </div>
       
-      <div class="product-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;">
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 340px)); justify-content: center; gap: 30px; max-width: 750px; margin: 0 auto;">
         {% for product in collection.products %}
           {% if cycle_handles contains product.handle %}
-            <div class="product-card" style="flex: 0 1 260px; max-width: 300px;">
-              <div class="product-card-image">
-                {% if product.featured_image %}
-                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
-                {% else %}
-                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
-                {% endif %}
-                {% if product.compare_at_price > product.price %}
-                  <span class="product-badge">Sale</span>
-                {% endif %}
-              </div>
-              <div class="product-card-content">
-                <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(255, 165, 0, 0.15); color: #FFA500;">Cycle Support</span>
-                <h3 class="product-card-title">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-                <div class="product-card-rating">
-                  <div class="stars">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  </div>
-                  <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
-                </div>
-                <div class="product-card-price">
-                  <span class="product-price">{{ product.price | money }}</span>
+            <div class="product-card">
+              <a href="{{ product.url }}" class="product-card-link">
+                <div class="product-card-image">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+                  {% else %}
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80" alt="{{ product.title }}" loading="lazy">
+                  {% endif %}
                   {% if product.compare_at_price > product.price %}
-                    <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                    <span class="product-badge">Sale</span>
                   {% endif %}
                 </div>
-                <form action="/cart/add" method="post" class="add-to-cart-form">
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <input type="hidden" name="quantity" value="1">
-                  <button type="submit" class="product-card-btn">Add to Cart</button>
-                </form>
-              </div>
+                <div class="product-card-content">
+                  <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(255, 165, 0, 0.15); color: #FFA500;">Cycle Support</span>
+                  <h3 class="product-card-title">{{ product.title }}</h3>
+                  <div class="product-card-rating">
+                    <div class="stars">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <span class="rating-count">({{ product.id | modulo: 50 | plus: 47 }})</span>
+                  </div>
+                  <div class="product-card-price">
+                    <span class="product-price">{{ product.price | money }}</span>
+                    {% if product.compare_at_price > product.price %}
+                      <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              <form action="/cart/add" method="post" class="add-to-cart-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="product-card-btn">Add to Cart</button>
+              </form>
             </div>
           {% endif %}
         {% endfor %}

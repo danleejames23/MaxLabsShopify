@@ -58,6 +58,13 @@
                 {% endfor %}
               </div>
             </div>
+          {% elsif product.variants.first.title != 'Default Title' %}
+            <div class="product-variants">
+              <label class="variant-label">Size:</label>
+              <div class="variant-options">
+                <span class="variant-option selected single-variant">{{ product.variants.first.title }}</span>
+              </div>
+            </div>
           {% endif %}
           
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -93,7 +100,7 @@
               <rect x="1" y="3" width="22" height="18" rx="2" ry="2"/>
               <line x1="1" y1="9" x2="23" y2="9"/>
             </svg>
-            <span>Free Shipping $75+</span>
+            <span>Free Shipping £75+</span>
           </div>
           <div class="product-trust-badge">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
