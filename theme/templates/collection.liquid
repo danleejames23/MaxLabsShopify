@@ -40,16 +40,14 @@
           Premium Quality
         </span>
       </div>
+      
+      <!-- Pure Ingredients heading right under badges -->
+      <h2 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; margin: 20px 0 8px; background: linear-gradient(135deg, #fff 0%, #00FF7F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Pure Ingredients, Real Results</h2>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">We source only the finest plant-based ingredients from around the world. Each herb and root is carefully selected for maximum potency and purity.</p>
     </div>
 
     <!-- Ingredients Showcase -->
     <div style="margin-bottom: 25px; padding: 25px 0; background: linear-gradient(180deg, rgba(0, 255, 127, 0.02) 0%, transparent 50%, rgba(0, 255, 127, 0.02) 100%); border-radius: 15px;">
-      <div style="text-align: center; margin-bottom: 20px;">
-        <span style="display: inline-block; background: rgba(0, 255, 127, 0.1); color: #00FF7F; padding: 5px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;">Natural Power</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">Pure Ingredients, Real Results</h2>
-        <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">We source only the finest plant-based ingredients from around the world. Each herb and root is carefully selected for maximum potency and purity.</p>
-      </div>
-      
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; overflow: hidden; transition: all 0.4s;">
           <div style="aspect-ratio: 16/10; overflow: hidden;">
@@ -94,10 +92,16 @@
         <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 550px; margin: 6px auto 0;">100% plant-based, sourced from nature's most powerful roots and herbs. Pure, potent, and high-concentration formulas.</p>
       </div>
       
-      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1300px; margin: 0 auto;">
+      <div class="product-grid raw-section" id="rawProductsGrid" style="max-width: 1300px; margin: 0 auto;">
         {% for product in collection.products %}
           {% if raw_handles contains product.handle %}
-            <div class="product-card">
+            <div class="product-card animate-in" data-category="raw" 
+                 data-product-title="{{ product.title }}"
+                 data-product-price="{{ product.price | money }}"
+                 data-product-image="{{ product.featured_image | image_url: width: 600 }}"
+                 data-product-url="{{ product.url }}"
+                 data-product-description="{{ product.description | strip_html | truncate: 150 }}"
+                 data-variant-id="{{ product.selected_or_first_available_variant.id }}">
               <a href="{{ product.url }}" class="product-card-link">
                 <div class="product-card-image">
                   {% if product.featured_image %}
@@ -107,10 +111,12 @@
                   {% endif %}
                   {% if product.compare_at_price > product.price %}
                     <span class="product-badge">Sale</span>
+                  {% elsif product.tags contains 'bestseller' %}
+                    <span class="product-badge" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">Best Seller</span>
                   {% endif %}
+                  <button class="quick-view-btn" type="button" onclick="event.preventDefault(); openQuickView(this.closest('.product-card'));">Quick View</button>
                 </div>
                 <div class="product-card-content">
-                  <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(0, 255, 127, 0.1); color: #00FF7F;">RAW Supplement</span>
                   <h3 class="product-card-title">{{ product.title }}</h3>
                   <div class="product-card-rating">
                     <div class="stars">
@@ -149,10 +155,16 @@
         <p style="font-size: 0.85rem; color: var(--color-text-muted); max-width: 550px; margin: 6px auto 0;">Protect your gains and support your body through every phase with our OCS and PCT formulas.</p>
       </div>
       
-      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 340px)); justify-content: center; gap: 30px; max-width: 750px; margin: 0 auto;">
+      <div class="product-grid cycle-section" id="cycleProductsGrid" style="max-width: 750px; margin: 0 auto; grid-template-columns: repeat(2, 1fr);">
         {% for product in collection.products %}
           {% if cycle_handles contains product.handle %}
-            <div class="product-card">
+            <div class="product-card animate-in" data-category="cycle"
+                 data-product-title="{{ product.title }}"
+                 data-product-price="{{ product.price | money }}"
+                 data-product-image="{{ product.featured_image | image_url: width: 600 }}"
+                 data-product-url="{{ product.url }}"
+                 data-product-description="{{ product.description | strip_html | truncate: 150 }}"
+                 data-variant-id="{{ product.selected_or_first_available_variant.id }}">
               <a href="{{ product.url }}" class="product-card-link">
                 <div class="product-card-image">
                   {% if product.featured_image %}
@@ -163,9 +175,9 @@
                   {% if product.compare_at_price > product.price %}
                     <span class="product-badge">Sale</span>
                   {% endif %}
+                  <button class="quick-view-btn" type="button" onclick="event.preventDefault(); openQuickView(this.closest('.product-card'));">Quick View</button>
                 </div>
                 <div class="product-card-content">
-                  <span style="display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(255, 165, 0, 0.15); color: #FFA500;">Cycle Support</span>
                   <h3 class="product-card-title">{{ product.title }}</h3>
                   <div class="product-card-rating">
                     <div class="stars">
@@ -195,6 +207,46 @@
         {% endfor %}
       </div>
     </div>
+
+    <!-- Trust Indicators -->
+    <div class="trust-indicators">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Free Shipping</strong>
+          <span>On orders over £75</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Lab Tested</strong>
+          <span>Third-party verified</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Fast Delivery</strong>
+          <span>1-3 business days</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Secure Checkout</strong>
+          <span>100% protected</span>
+        </div>
+      </div>
+    </div>
       
     {% if collection.products.size == 0 %}
       <div style="text-align: center; padding: 100px 0;">
@@ -205,3 +257,313 @@
     {% endif %}
   </div>
 </div>
+
+<!-- Quick View Modal -->
+<div class="quick-view-modal" id="quickViewModal">
+  <div class="quick-view-content">
+    <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+    <div class="quick-view-image">
+      <img id="quickViewImage" src="" alt="">
+    </div>
+    <div class="quick-view-details">
+      <h2 class="quick-view-title" id="quickViewTitle"></h2>
+      <div class="quick-view-price" id="quickViewPrice"></div>
+      <p class="quick-view-description" id="quickViewDescription"></p>
+      <div class="product-card-rating" style="margin-bottom: 20px;">
+        <div class="stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#00FF7F"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#00FF7F"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#00FF7F"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#00FF7F"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#00FF7F"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="rating-count">(47+ Reviews)</span>
+      </div>
+      <form method="post" id="quickViewForm" onsubmit="return false;">
+        <input type="hidden" name="id" id="quickViewVariantId" value="">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px 30px; font-size: 1rem;">Add to Cart</button>
+      </form>
+      <a href="#" id="quickViewLink" class="btn btn-secondary" style="width: 100%; margin-top: 10px; text-align: center; display: block; padding: 15px 30px;">View Full Details</a>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Add to Cart Bar -->
+<div class="sticky-cart-bar" id="stickyCartBar">
+  <div class="sticky-cart-info">
+    <img id="stickyProductImage" src="" alt="">
+    <div>
+      <div class="product-name" id="stickyProductName"></div>
+      <div class="product-price" id="stickyProductPrice"></div>
+    </div>
+  </div>
+  <form method="post" id="stickyCartForm" class="sticky-cart-form" onsubmit="return false;">
+    <input type="hidden" name="id" id="stickyVariantId" value="">
+    <div class="qty-selector">
+      <button type="button" class="qty-btn" onclick="updateStickyQty(-1)">-</button>
+      <input type="number" name="quantity" id="stickyQty" value="1" min="1" max="10">
+      <button type="button" class="qty-btn" onclick="updateStickyQty(1)">+</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</div>
+
+<script>
+// Quick View Modal
+function openQuickView(card) {
+  const modal = document.getElementById('quickViewModal');
+  const title = card.dataset.productTitle;
+  const price = card.dataset.productPrice;
+  const image = card.dataset.productImage;
+  const url = card.dataset.productUrl;
+  const description = card.dataset.productDescription;
+  const variantId = card.dataset.variantId;
+  
+  document.getElementById('quickViewTitle').textContent = title;
+  document.getElementById('quickViewPrice').textContent = price;
+  document.getElementById('quickViewImage').src = image;
+  document.getElementById('quickViewDescription').textContent = description || 'Premium quality supplement formulated for maximum results.';
+  document.getElementById('quickViewLink').href = url;
+  document.getElementById('quickViewVariantId').value = variantId;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuickView() {
+  const modal = document.getElementById('quickViewModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on background click
+document.getElementById('quickViewModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQuickView();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeQuickView();
+  }
+});
+
+// Quick View Form Handler
+(function() {
+  const quickViewForm = document.getElementById('quickViewForm');
+  if (quickViewForm) {
+    const btn = quickViewForm.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (this.disabled) return;
+        
+        const originalText = this.textContent;
+        this.textContent = 'Adding...';
+        this.disabled = true;
+        
+        const variantId = document.getElementById('quickViewVariantId').value;
+        
+        try {
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: Number(variantId), quantity: 1 })
+          });
+          
+          if (res.ok) {
+            this.textContent = 'Added ✓';
+            this.style.background = '#00CC66';
+            
+            fetch('/cart.js').then(r => r.json()).then(cart => {
+              document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = cart.item_count;
+              });
+            });
+            
+            setTimeout(() => {
+              this.textContent = originalText;
+              this.style.background = '';
+              this.disabled = false;
+              closeQuickView();
+            }, 1500);
+          } else {
+            throw new Error('Failed');
+          }
+        } catch (err) {
+          this.textContent = 'Error';
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '';
+            this.disabled = false;
+          }, 2000);
+        }
+      });
+    }
+  }
+})();
+
+// Sticky Cart Bar - shows when hovering over a product
+let stickyTimeout;
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    clearTimeout(stickyTimeout);
+    const stickyBar = document.getElementById('stickyCartBar');
+    
+    document.getElementById('stickyProductName').textContent = this.dataset.productTitle;
+    document.getElementById('stickyProductPrice').textContent = this.dataset.productPrice;
+    document.getElementById('stickyProductImage').src = this.dataset.productImage;
+    document.getElementById('stickyVariantId').value = this.dataset.variantId;
+    
+    stickyBar.classList.add('visible');
+  });
+  
+  card.addEventListener('mouseleave', function() {
+    stickyTimeout = setTimeout(() => {
+      document.getElementById('stickyCartBar').classList.remove('visible');
+    }, 2000);
+  });
+});
+
+// Keep sticky bar visible when hovering over it
+document.getElementById('stickyCartBar').addEventListener('mouseenter', function() {
+  clearTimeout(stickyTimeout);
+});
+
+document.getElementById('stickyCartBar').addEventListener('mouseleave', function() {
+  stickyTimeout = setTimeout(() => {
+    this.classList.remove('visible');
+  }, 1000);
+});
+
+// Quantity selector for sticky cart
+function updateStickyQty(change) {
+  const input = document.getElementById('stickyQty');
+  let val = parseInt(input.value) + change;
+  if (val < 1) val = 1;
+  if (val > 10) val = 10;
+  input.value = val;
+}
+
+// Sticky Cart Form Handler
+(function() {
+  const stickyForm = document.getElementById('stickyCartForm');
+  if (stickyForm) {
+    const stickyBtn = stickyForm.querySelector('.btn');
+    if (stickyBtn) {
+      stickyBtn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (this.disabled) return;
+        
+        const originalText = this.textContent;
+        this.textContent = 'Adding...';
+        this.disabled = true;
+        
+        const variantId = document.getElementById('stickyVariantId').value;
+        const quantity = document.getElementById('stickyQty').value || 1;
+        
+        try {
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: Number(variantId), quantity: Number(quantity) })
+          });
+          
+          if (res.ok) {
+            this.textContent = 'Added ✓';
+            this.style.background = '#00CC66';
+            
+            fetch('/cart.js').then(r => r.json()).then(cart => {
+              document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = cart.item_count;
+              });
+            });
+            
+            setTimeout(() => {
+              this.textContent = originalText;
+              this.style.background = '';
+              this.disabled = false;
+            }, 2000);
+          } else {
+            throw new Error('Failed');
+          }
+        } catch (err) {
+          this.textContent = 'Error';
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '';
+            this.disabled = false;
+          }, 2000);
+        }
+      });
+    }
+  }
+})();
+
+// Add to Cart Handler for Collection Page
+(function() {
+  document.querySelectorAll('.add-to-cart-form').forEach(form => {
+    // Remove action to prevent any default submission
+    form.removeAttribute('action');
+    
+    const btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
+    
+    btn.addEventListener('click', async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (this.disabled) return;
+      
+      const originalText = this.textContent;
+      this.textContent = 'Adding...';
+      this.disabled = true;
+
+      const variantId = form.querySelector('input[name="id"]').value;
+      const quantity = form.querySelector('input[name="quantity"]')?.value || 1;
+
+      try {
+        const res = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: parseInt(quantity) })
+        });
+
+        if (res.ok) {
+          this.textContent = 'Added ✓';
+          this.style.background = '#00CC66';
+          
+          // Update cart count
+          fetch('/cart.js').then(r => r.json()).then(cart => {
+            document.querySelectorAll('.cart-count').forEach(el => {
+              el.textContent = cart.item_count;
+            });
+          });
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '';
+            this.disabled = false;
+          }, 2000);
+        } else {
+          throw new Error('Failed');
+        }
+      } catch (err) {
+        this.textContent = 'Error';
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.style.background = '';
+          this.disabled = false;
+        }, 2000);
+      }
+    });
+  });
+})();
+</script>

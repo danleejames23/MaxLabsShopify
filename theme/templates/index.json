@@ -12,6 +12,61 @@
         "secondary_button_link": "/pages/about-us"
       }
     },
+    "category-bar": {
+      "type": "category-bar",
+      "blocks": {
+        "cat-1": {
+          "type": "category",
+          "settings": {
+            "icon": "🏋️",
+            "title": "All Products",
+            "link": "/collections/all"
+          }
+        },
+        "cat-2": {
+          "type": "category",
+          "settings": {
+            "icon": "💪",
+            "title": "Muscle Building",
+            "link": "/collections/all"
+          }
+        },
+        "cat-3": {
+          "type": "category",
+          "settings": {
+            "icon": "⚡",
+            "title": "Performance",
+            "link": "/collections/all"
+          }
+        },
+        "cat-4": {
+          "type": "category",
+          "settings": {
+            "icon": "🔄",
+            "title": "Cycle Support",
+            "link": "/collections/all"
+          }
+        },
+        "cat-5": {
+          "type": "category",
+          "settings": {
+            "icon": "🧠",
+            "title": "Cognitive",
+            "link": "/collections/all"
+          }
+        },
+        "cat-6": {
+          "type": "category",
+          "settings": {
+            "icon": "🌿",
+            "title": "RAW Supplements",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5", "cat-6"],
+      "settings": {}
+    },
     "trust-badges": {
       "type": "trust-badges",
       "settings": {}
@@ -36,6 +91,53 @@
       "type": "lifestyle-banner",
       "settings": {}
     },
+    "bundle-deals": {
+      "type": "bundle-deals",
+      "blocks": {
+        "bundle-1": {
+          "type": "bundle",
+          "settings": {
+            "icon": "💊",
+            "badge": "",
+            "title": "Buy 2, Save 10%",
+            "description": "Purchase any 2 products and save 10% automatically at checkout.",
+            "savings": "10%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        "bundle-2": {
+          "type": "bundle",
+          "settings": {
+            "icon": "🏆",
+            "badge": "Most Popular",
+            "title": "Buy 3, Save 15%",
+            "description": "Stack 3 supplements together and unlock 15% savings on your order.",
+            "savings": "15%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        "bundle-3": {
+          "type": "bundle",
+          "settings": {
+            "icon": "⚡",
+            "badge": "Best Value",
+            "title": "Buy 4+, Save 20%",
+            "description": "Go all in with 4 or more products and get our maximum 20% discount.",
+            "savings": "20%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["bundle-1", "bundle-2", "bundle-3"],
+      "settings": {
+        "title": "Bundle & Save",
+        "subtitle": "Multi-Buy Discounts",
+        "description": "Stack your supplements and save more. The more you buy, the more you save!"
+      }
+    },
     "features": {
       "type": "features",
       "settings": {
@@ -56,7 +158,7 @@
       "type": "cta",
       "settings": {
         "title": "Ready to Maximize Your Potential?",
-        "description": "Join the Max Labs community and get 15% off your first order. Plus, FREE UK Next Day Delivery on all orders!",
+        "description": "Join the Max Labs community and get 15% off your first order!",
         "button_text": "Shop Now",
         "button_link": "/collections/all"
       }
@@ -64,10 +166,12 @@
   },
   "order": [
     "hero",
+    "category-bar",
     "trust-badges",
     "raw-products",
     "cycle-support",
     "lifestyle-banner",
+    "bundle-deals",
     "features",
     "testimonials",
     "cta"

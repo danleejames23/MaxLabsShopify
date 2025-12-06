@@ -1,0 +1,189 @@
+<!-- Announcement Bar - Moving/Marquee Banner -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <div class="announcement-content">
+      {% for block in section.blocks %}
+        <span class="announcement-item">
+          {% if block.settings.icon != blank %}
+            <span class="announcement-icon">{{ block.settings.icon }}</span>
+          {% endif %}
+          {{ block.settings.text }}
+        </span>
+        <span class="announcement-divider">|</span>
+      {% endfor %}
+      <!-- Duplicate for seamless loop -->
+      {% for block in section.blocks %}
+        <span class="announcement-item">
+          {% if block.settings.icon != blank %}
+            <span class="announcement-icon">{{ block.settings.icon }}</span>
+          {% endif %}
+          {{ block.settings.text }}
+        </span>
+        <span class="announcement-divider">|</span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 255, 127, 0.2);
+    position: relative;
+  }
+
+  .announcement-track {
+    display: flex;
+    width: max-content;
+    animation: marquee {{ section.settings.speed }}s linear infinite;
+  }
+
+  .announcement-bar:hover .announcement-track {
+    animation-play-state: paused;
+  }
+
+  .announcement-content {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+  }
+
+  .announcement-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .announcement-icon {
+    font-size: 1rem;
+  }
+
+  .announcement-divider {
+    color: {{ section.settings.divider_color }};
+    opacity: 0.5;
+    font-weight: 300;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause animation on reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .announcement-track {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .announcement-item {
+      font-size: 0.7rem;
+      padding: 0 15px;
+      letter-spacing: 1px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#00FF7F"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#00FF7F"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll Speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "FREE UK SHIPPING OVER £50"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "🏷️",
+            "text": "BUY MORE SAVE MORE: 2+ ITEMS 10% OFF | 3+ ITEMS 15% OFF | 4+ ITEMS 20% OFF"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "FREE UK SHIPPING OVER £75"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "🔬",
+            "text": "LAB TESTED & CERTIFIED"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "💪",
+            "text": "TRUSTED BY ATHLETES WORLDWIDE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

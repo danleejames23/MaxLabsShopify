@@ -1,0 +1,159 @@
+<!-- Category Marquee Bar -->
+<div class="category-bar">
+  <div class="category-marquee">
+    <div class="category-marquee-content">
+      <span class="category-item">💪 <strong>Muscle Building</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">⚡ <strong>Performance</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🔄 <strong>Cycle Support</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🧠 <strong>Cognitive</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🌿 <strong>RAW Supplements</strong></span>
+      <span class="category-separator">✦</span>
+    </div>
+    <div class="category-marquee-content" aria-hidden="true">
+      <span class="category-item">💪 <strong>Muscle Building</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">⚡ <strong>Performance</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🔄 <strong>Cycle Support</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🧠 <strong>Cognitive</strong></span>
+      <span class="category-separator">✦</span>
+      <span class="category-item">🌿 <strong>RAW Supplements</strong></span>
+      <span class="category-separator">✦</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .category-bar {
+    background: var(--color-background-secondary);
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 0;
+    overflow: hidden;
+  }
+
+  .category-marquee {
+    display: flex;
+    width: max-content;
+    animation: category-scroll 25s linear infinite;
+  }
+
+  .category-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .category-marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-right: 30px;
+  }
+
+  .category-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+
+  .category-item strong {
+    color: var(--color-primary);
+  }
+
+  .category-separator {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    opacity: 0.6;
+  }
+
+  @keyframes category-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .category-item {
+      font-size: 0.75rem;
+    }
+    .category-marquee-content {
+      gap: 20px;
+      padding-right: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Category Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "💪"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "All Products"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Bar",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "icon": "🏋️",
+            "title": "All Products",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "🔄",
+            "title": "Cycle Support",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "🌿",
+            "title": "RAW Supplements",
+            "link": "/collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

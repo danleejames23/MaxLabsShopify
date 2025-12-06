@@ -1,0 +1,328 @@
+<!-- Bundle Deals / Multiple Buy Discounts Section -->
+<section class="section bundle-deals-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">{{ section.settings.subtitle }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <p class="section-description">{{ section.settings.description }}</p>
+    </div>
+
+    <div class="bundle-grid">
+      {% for block in section.blocks %}
+        <div class="bundle-card" {{ block.shopify_attributes }}>
+          {% if block.settings.badge != blank %}
+            <div class="bundle-badge">{{ block.settings.badge }}</div>
+          {% endif %}
+          
+          <div class="bundle-icon">
+            {{ block.settings.icon }}
+          </div>
+          
+          <h3 class="bundle-title">{{ block.settings.title }}</h3>
+          <p class="bundle-description">{{ block.settings.description }}</p>
+          
+          <div class="bundle-savings">
+            <span class="savings-label">You Save</span>
+            <span class="savings-amount">{{ block.settings.savings }}</span>
+          </div>
+          
+          <a href="{{ block.settings.link }}" class="btn btn-primary bundle-btn">
+            {{ block.settings.button_text }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Discount Code Callout -->
+    <div class="discount-callout">
+      <div class="discount-callout-content">
+        <div class="discount-icon">🎁</div>
+        <div class="discount-text">
+          <h4>First Time Here?</h4>
+          <p>Use code <strong>MAXLABS10</strong> at checkout for 10% off your first order!</p>
+        </div>
+        <a href="/collections/all" class="btn btn-primary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bundle-deals-section {
+    background: linear-gradient(180deg, rgba(0, 255, 127, 0.02) 0%, transparent 100%);
+    padding: 50px 0;
+  }
+
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+
+  .bundle-card {
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .bundle-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 255, 127, 0.15);
+  }
+
+  .bundle-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+    color: #000;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .bundle-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  .bundle-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .bundle-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .bundle-savings {
+    background: rgba(0, 255, 127, 0.1);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+
+  .savings-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+
+  .savings-amount {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .bundle-btn {
+    width: 100%;
+  }
+
+  /* Discount Callout */
+  .discount-callout {
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.1) 0%, rgba(0, 255, 127, 0.02) 100%);
+    border: 2px solid rgba(0, 255, 127, 0.3);
+    border-radius: 16px;
+    padding: 25px 30px;
+  }
+
+  .discount-callout-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .discount-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  .discount-text {
+    flex: 1;
+  }
+
+  .discount-text h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+
+  .discount-text p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .discount-text strong {
+    color: var(--color-primary);
+    font-weight: 700;
+    background: rgba(0, 255, 127, 0.15);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 900px) {
+    .bundle-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .discount-callout-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .discount-callout {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Bundle Deals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Bundle & Save"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Multi-Buy Discounts"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Stack your supplements and save more. The more you buy, the more you save!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Deal",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "💊"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text",
+          "default": "Most Popular"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Buy 2, Get 10% Off"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Purchase any 2 products and automatically save 10% on your order."
+        },
+        {
+          "type": "text",
+          "id": "savings",
+          "label": "Savings Amount",
+          "default": "10%"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Deals",
+      "blocks": [
+        {
+          "type": "bundle",
+          "settings": {
+            "icon": "💊",
+            "badge": "",
+            "title": "Buy 2, Save 10%",
+            "description": "Purchase any 2 products and save 10% automatically at checkout.",
+            "savings": "10%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "icon": "🏆",
+            "badge": "Most Popular",
+            "title": "Buy 3, Save 15%",
+            "description": "Stack 3 supplements together and unlock 15% savings on your order.",
+            "savings": "15%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "icon": "⚡",
+            "badge": "Best Value",
+            "title": "Buy 4+, Save 20%",
+            "description": "Go all in with 4 or more products and get our maximum 20% discount.",
+            "savings": "20%",
+            "button_text": "Shop Now",
+            "link": "/collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

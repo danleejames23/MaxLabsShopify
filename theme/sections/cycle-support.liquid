@@ -10,7 +10,11 @@
       {% assign cycle_handles = 'on-cycle-support,post-cycle-therapy' | split: ',' %}
       {% for product in collections.all.products %}
         {% if cycle_handles contains product.handle %}
-          <div class="product-card cycle-card">
+          <div class="product-card cycle-card homepage-product-card"
+               data-product-title="{{ product.title }}"
+               data-product-price="{{ product.price | money }}"
+               data-product-image="{{ product.featured_image | image_url: width: 600 }}"
+               data-variant-id="{{ product.selected_or_first_available_variant.id }}">
             <div class="product-card-image">
               {% if product.featured_image %}
                 <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
@@ -20,7 +24,6 @@
               {% endif %}
             </div>
             <div class="product-card-content">
-              <span class="product-category cycle-category">Cycle Support</span>
               <h3 class="product-card-title">
                 <a href="{{ product.url }}">{{ product.title }}</a>
               </h3>

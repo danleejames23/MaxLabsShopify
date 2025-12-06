@@ -4,11 +4,15 @@
       <h2 class="cta-title">{{ section.settings.title }}</h2>
       <p class="cta-description">{{ section.settings.description }}</p>
       
-      <form class="newsletter-form" action="/contact#contact_form" method="post">
+      <form id="newsletter-cta-form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
         <input type="hidden" name="form_type" value="customer">
         <input type="hidden" name="utf8" value="✓">
-        <input type="email" name="contact[email]" class="newsletter-input" placeholder="Enter your email for 15% off" required>
-        <button type="submit" class="btn btn-primary">Subscribe</button>
+        <input type="hidden" name="customer[accepts_marketing]" value="true">
+        <input type="hidden" name="customer[tags]" value="newsletter,BAKER15">
+        <div class="newsletter-form">
+          <input type="email" name="customer[email]" class="newsletter-input" placeholder="Enter your email for 15% off" required>
+          <button type="submit" class="btn btn-primary" id="newsletter-submit-btn">Subscribe</button>
+        </div>
       </form>
       
       <div style="margin-top: 30px;">
@@ -17,6 +21,90 @@
     </div>
   </div>
 </section>
+
+<!-- Newsletter Success Popup -->
+<div id="newsletter-popup" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center;">
+  <div style="background: var(--color-background-secondary); border: 2px solid var(--color-primary); border-radius: 20px; padding: 50px; max-width: 450px; text-align: center; position: relative; animation: popupIn 0.3s ease;">
+    <button onclick="closeNewsletterPopup()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    
+    <div style="width: 70px; height: 70px; background: rgba(0, 255, 127, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+      <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    
+    <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 15px; color: #fff;">You're In!</h3>
+    <p style="color: var(--color-text-muted); margin-bottom: 25px; line-height: 1.6;">Welcome to the Max Labs community! Use this code on your next order:</p>
+    
+    <div style="background: var(--color-background); border: 2px dashed var(--color-primary); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+      <span style="font-size: 1.8rem; font-weight: 800; color: var(--color-primary); letter-spacing: 3px;">BAKER15</span>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 8px;">15% off your first order</p>
+    </div>
+    
+    <a href="/collections/all" class="btn btn-primary" style="padding: 14px 40px; font-size: 1rem;">Start Shopping</a>
+  </div>
+</div>
+
+<style>
+  @keyframes popupIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('newsletter-cta-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = form.querySelector('input[type="email"]').value;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      
+      // Disable button while submitting
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subscribing...';
+      
+      // Submit to Shopify's customer creation endpoint
+      fetch('/account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'form_type': 'create_customer',
+          'utf8': '✓',
+          'customer[email]': email,
+          'customer[accepts_marketing]': 'true',
+          'customer[tags]': 'newsletter,BAKER15'
+        })
+      }).then(function(response) {
+        // Show popup (customer created or already exists)
+        document.getElementById('newsletter-popup').style.display = 'flex';
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Subscribe';
+      }).catch(function(error) {
+        // Show popup anyway - email likely still captured
+        document.getElementById('newsletter-popup').style.display = 'flex';
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Subscribe';
+      });
+    });
+  }
+});
+
+function closeNewsletterPopup() {
+  document.getElementById('newsletter-popup').style.display = 'none';
+}
+
+// Close on background click
+document.getElementById('newsletter-popup')?.addEventListener('click', function(e) {
+  if (e.target === this) closeNewsletterPopup();
+});
+</script>
 
 {% schema %}
 {
@@ -32,7 +120,7 @@
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Join the Max Labs community and get 15% off your first order. Plus, free shipping on orders over £50."
+      "default": "Join the Max Labs community and get 15% off your first order. Plus, free shipping on orders over £75."
     },
     {
       "type": "text",

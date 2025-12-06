@@ -118,3 +118,77 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(function(item) {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+    
+    // Hide all answers initially
+    answer.style.display = 'none';
+    
+    question.addEventListener('click', function() {
+      const isOpen = answer.style.display === 'block';
+      
+      // Close all other answers
+      faqItems.forEach(function(otherItem) {
+        const otherAnswer = otherItem.querySelector('.faq-answer');
+        const otherIcon = otherItem.querySelector('.faq-icon');
+        otherAnswer.style.display = 'none';
+        otherIcon.textContent = '+';
+        otherItem.classList.remove('active');
+      });
+      
+      // Toggle current answer
+      if (!isOpen) {
+        answer.style.display = 'block';
+        icon.textContent = '−';
+        item.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+<style>
+  .faq-answer {
+    padding: 0 20px 20px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+  .faq-question:hover {
+    border-color: var(--color-primary);
+  }
+  .faq-item.active .faq-question {
+    border-color: var(--color-primary);
+    background: rgba(0, 255, 127, 0.05);
+  }
+  .faq-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 300;
+  }
+  .faq-item {
+    margin-bottom: 10px;
+  }
+</style>

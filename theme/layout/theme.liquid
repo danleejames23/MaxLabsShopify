@@ -113,7 +113,7 @@
     /* Header Styles */
     .site-header {
       position: fixed;
-      top: 0;
+      top: 38px; /* Account for announcement bar */
       left: 0;
       right: 0;
       z-index: 1000;
@@ -122,8 +122,9 @@
       border-bottom: 1px solid var(--color-border);
       transition: var(--transition-medium);
     }
-
+    
     .site-header.scrolled {
+      top: 0; /* Hide announcement bar effect when scrolled */
       background: rgba(0, 0, 0, 0.98);
     }
 
@@ -293,8 +294,8 @@
     .site-footer {
       background: var(--color-background-secondary);
       border-top: 1px solid var(--color-border);
-      padding: 80px 0 30px;
-      margin-top: 100px;
+      padding: 60px 0 30px;
+      margin-top: 40px;
     }
 
     .footer-grid {
@@ -411,7 +412,7 @@
 
     /* Main Content */
     main {
-      padding-top: 80px;
+      padding-top: 138px; /* 38px announcement bar + 100px header */
       min-height: 60vh;
     }
 
@@ -504,14 +505,14 @@
       bottom: 0;
       background: rgba(0, 0, 0, 0.95);
       z-index: 10000;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
 
-    .age-modal.hidden {
-      display: none;
+    .age-modal.show {
+      display: flex;
     }
 
     .age-modal-content {
@@ -577,7 +578,10 @@
 
 <body class="template-{{ template.name | handle }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
   
-  <!-- Age Verification Modal -->
+  <!-- Announcement Bar -->
+  {% section 'announcement-bar' %}
+  
+  <!-- Age Verification Modal - Hidden by default, shown via JS if not verified -->
   <div class="age-modal" id="ageModal">
     <div class="age-modal-content">
       <img src="{{ 'logotransparent.png' | asset_url }}" alt="Max Labs" class="age-modal-logo" style="height: 60px; width: auto;">
@@ -614,6 +618,7 @@
           <a href="/pages/about-us">About</a>
           <a href="/pages/faq">FAQ</a>
           <a href="/blogs/news">Blog</a>
+          <a href="/pages/bigboybaker">BigBoyBaker</a>
           <a href="/pages/contact">Contact</a>
         </nav>
 
@@ -648,12 +653,13 @@
     <a href="/pages/about-us">About Us</a>
     <a href="/pages/faq">FAQ</a>
     <a href="/blogs/news">Blog</a>
+    <a href="/pages/bigboybaker">BigBoyBaker</a>
     <a href="/pages/contact">Contact</a>
     <a href="/cart">Cart ({{ cart.item_count }})</a>
   </nav>
 
   <!-- Main Content -->
-  <main id="MainContent" role="main" tabindex="-1" style="padding-top: 100px;">
+  <main id="MainContent" role="main" tabindex="-1">
     {{ content_for_layout }}
   </main>
 
@@ -759,92 +765,626 @@
   {% if settings.tidio_key != blank %}
     <script src="//code.tidio.co/{{ settings.tidio_key }}.js" async></script>
   {% else %}
-    <!-- Demo Chat Widget - Shows when Tidio key is not configured -->
-    <div id="maxlabs-chat-widget" style="position: fixed; bottom: 30px; right: 20px; z-index: 9999;">
-      <button id="chat-toggle-btn" onclick="toggleMaxLabsChat()" style="width: 60px; height: 60px; border-radius: 50%; background: var(--color-primary); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,255,127,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="#000" stroke="#000" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    <!-- Premium Chat Widget -->
+    <style>
+      .chat-widget {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      
+      .chat-btn {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 32px rgba(0, 255, 127, 0.4), 0 0 0 0 rgba(0, 255, 127, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        animation: chatPulse 2s infinite;
+      }
+      
+      @keyframes chatPulse {
+        0%, 100% { box-shadow: 0 8px 32px rgba(0, 255, 127, 0.4), 0 0 0 0 rgba(0, 255, 127, 0.4); }
+        50% { box-shadow: 0 8px 32px rgba(0, 255, 127, 0.4), 0 0 0 12px rgba(0, 255, 127, 0); }
+      }
+      
+      .chat-btn::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+        transform: rotate(45deg);
+        transition: all 0.5s;
+        opacity: 0;
+      }
+      
+      .chat-btn:hover::before {
+        animation: btnShine 0.6s ease;
+      }
+      
+      @keyframes btnShine {
+        0% { left: -50%; opacity: 1; }
+        100% { left: 150%; opacity: 0; }
+      }
+      
+      .chat-btn:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 40px rgba(0, 255, 127, 0.5);
+      }
+      
+      .chat-btn.active {
+        animation: none;
+        transform: scale(0.95);
+      }
+      
+      .chat-btn svg {
+        transition: all 0.3s ease;
+      }
+      
+      .chat-btn.active .chat-icon { display: none; }
+      .chat-btn.active .close-icon { display: block; }
+      .chat-btn .close-icon { display: none; }
+      
+      .chat-btn.has-message {
+        animation: chatPulse 2s infinite, glowRing 1.5s infinite;
+      }
+      
+      @keyframes glowRing {
+        0%, 100% { box-shadow: 0 8px 32px rgba(0, 255, 127, 0.4), 0 0 0 0 rgba(0, 255, 127, 0.6); }
+        50% { box-shadow: 0 8px 32px rgba(0, 255, 127, 0.4), 0 0 0 8px rgba(0, 255, 127, 0); }
+      }
+      
+      .chat-teaser {
+        position: absolute;
+        right: 75px;
+        bottom: 12px;
+        background: #1a1a1a;
+        border: 1px solid rgba(0, 255, 127, 0.3);
+        padding: 10px 16px;
+        border-radius: 12px;
+        border-bottom-right-radius: 4px;
+        font-size: 0.85rem;
+        color: #fff;
+        white-space: nowrap;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        animation: teaserSlide 0.4s ease, teaserFloat 3s ease-in-out infinite 0.4s;
+        cursor: pointer;
+      }
+      
+      .chat-teaser::after {
+        content: '';
+        position: absolute;
+        right: -8px;
+        bottom: 8px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid #1a1a1a;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+      }
+      
+      .chat-teaser span {
+        color: #00FF7F;
+        font-weight: 600;
+      }
+      
+      @keyframes teaserSlide {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      
+      @keyframes teaserFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+      }
+      
+      
+      .chat-popup {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 360px;
+        max-height: calc(100vh - 150px);
+        background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
+        border: 1px solid rgba(0, 255, 127, 0.2);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 127, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.95);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .chat-popup.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      
+      .chat-header {
+        background: linear-gradient(135deg, #00FF7F 0%, #00CC66 50%, #00AA55 100%);
+        padding: 14px 16px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .chat-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+      
+      .chat-header-content {
+        position: relative;
+        z-index: 1;
+      }
+      
+      .chat-header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      
+      .chat-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .chat-avatar {
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      
+      .chat-brand-info h4 {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #000;
+      }
+      
+      .chat-status {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        color: rgba(0, 0, 0, 0.7);
+      }
+      
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background: #000;
+        border-radius: 50%;
+        animation: statusPulse 1.5s infinite;
+      }
+      
+      @keyframes statusPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      
+      .chat-close {
+        width: 32px;
+        height: 32px;
+        background: rgba(0, 0, 0, 0.15);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+      
+      .chat-close:hover {
+        background: rgba(0, 0, 0, 0.25);
+        transform: rotate(90deg);
+      }
+      
+      .chat-close svg {
+        width: 16px;
+        height: 16px;
+        stroke: #000;
+      }
+      
+      .chat-response-time {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        color: rgba(0, 0, 0, 0.8);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      
+      .chat-messages {
+        padding: 16px;
+        height: 220px;
+        overflow-y: auto;
+        background: linear-gradient(180deg, rgba(0,255,127,0.02) 0%, transparent 100%);
+      }
+      
+      .chat-messages::-webkit-scrollbar {
+        width: 4px;
+      }
+      
+      .chat-messages::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      .chat-messages::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 127, 0.3);
+        border-radius: 2px;
+      }
+      
+      .chat-message {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+        animation: messageSlide 0.4s ease;
+      }
+      
+      @keyframes messageSlide {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .chat-message-avatar {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+      }
+      
+      .chat-message-content {
+        flex: 1;
+      }
+      
+      .chat-message-bubble {
+        background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 14px 16px;
+        border-radius: 16px;
+        border-top-left-radius: 4px;
+        max-width: 90%;
+      }
+      
+      .chat-message-bubble p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #fff;
+        line-height: 1.5;
+      }
+      
+      .chat-message-time {
+        font-size: 0.7rem;
+        color: #555;
+        margin-top: 6px;
+        display: block;
+      }
+      
+      .chat-quick-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      
+      .quick-action-btn {
+        background: rgba(0, 255, 127, 0.1);
+        border: 1px solid rgba(0, 255, 127, 0.2);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: #00FF7F;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .quick-action-btn:hover {
+        background: rgba(0, 255, 127, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      .chat-input-area {
+        padding: 16px 20px;
+        background: #0d0d0d;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .chat-input-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 6px 6px 6px 16px;
+        transition: all 0.3s ease;
+      }
+      
+      .chat-input-wrapper:focus-within {
+        border-color: rgba(0, 255, 127, 0.4);
+        box-shadow: 0 0 20px rgba(0, 255, 127, 0.1);
+      }
+      
+      .chat-input-wrapper input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      
+      .chat-input-wrapper input::placeholder {
+        color: #555;
+      }
+      
+      .chat-send-btn {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+      
+      .chat-send-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4);
+      }
+      
+      .chat-send-btn:active {
+        transform: scale(0.95);
+      }
+      
+      .chat-send-btn svg {
+        width: 20px;
+        height: 20px;
+        stroke: #000;
+        fill: none;
+      }
+      
+      .chat-footer {
+        padding: 12px 20px;
+        text-align: center;
+        font-size: 0.7rem;
+        color: #444;
+        background: #0a0a0a;
+      }
+      
+      .chat-footer a {
+        color: #00FF7F;
+        text-decoration: none;
+      }
+      
+      @media (max-width: 480px) {
+        .chat-widget {
+          bottom: 15px;
+          right: 15px;
+        }
+        .chat-popup {
+          width: calc(100vw - 30px);
+          right: -10px;
+          bottom: 75px;
+        }
+        .chat-btn {
+          width: 55px;
+          height: 55px;
+        }
+        .chat-teaser {
+          display: none;
+        }
+      }
+    </style>
+    
+    <div class="chat-widget" id="maxlabs-chat-widget">
+      <div class="chat-teaser" id="chat-teaser" onclick="toggleMaxLabsChat()">
+        👋 <span>Need help?</span> We're online!
+      </div>
+      <button class="chat-btn has-message" id="chat-toggle-btn" onclick="toggleMaxLabsChat()">
+        <svg class="chat-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
-      <div id="chat-popup-box" style="display: none; position: absolute; bottom: 70px; right: 0; width: 350px; background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-        <div style="background: var(--color-primary); color: #000; padding: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: 700;">💬 Max Labs Support</span>
-            <button onclick="toggleMaxLabsChat()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #000;">×</button>
+      
+      <div class="chat-popup" id="chat-popup-box">
+        <div class="chat-header">
+          <div class="chat-header-content">
+            <div class="chat-header-top">
+              <div class="chat-brand">
+                <div class="chat-avatar">💪</div>
+                <div class="chat-brand-info">
+                  <h4>Max Labs Support</h4>
+                  <div class="chat-status">
+                    <span class="status-dot"></span>
+                    <span>Online now</span>
+                  </div>
+                </div>
+              </div>
+              <button class="chat-close" onclick="toggleMaxLabsChat()">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="chat-response-time">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Usually replies in minutes
+            </div>
           </div>
-          <div style="font-size: 0.85rem; margin-top: 5px;">We typically reply within minutes</div>
         </div>
-        <div style="padding: 20px; height: 200px; overflow-y: auto;">
-          <div style="background: #1a1a1a; padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; max-width: 85%;">
-            <p style="margin: 0; font-size: 0.9rem; color: #fff;">👋 Hi there! Welcome to Max Labs. How can we help you today?</p>
-            <span style="font-size: 0.7rem; color: #666; margin-top: 5px; display: block;">Just now</span>
+        
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-message">
+            <div class="chat-message-avatar">🧬</div>
+            <div class="chat-message-content">
+              <div class="chat-message-bubble">
+                <p>Hey there! 👋 Welcome to Max Labs. I'm here to help you find the perfect supplements for your goals.</p>
+              </div>
+              <span class="chat-message-time">Just now</span>
+              <div class="chat-quick-actions">
+                <button class="quick-action-btn" onclick="quickMessage('Product recommendations')">Product Recommendations</button>
+                <button class="quick-action-btn" onclick="quickMessage('Shipping info')">Shipping Info</button>
+                <button class="quick-action-btn" onclick="quickMessage('Track my order')">Track Order</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div style="padding: 15px; border-top: 1px solid #2a2a2a;">
-          <form onsubmit="sendMaxLabsMessage(event)" style="display: flex; gap: 10px;">
-            <input type="text" id="chat-input" placeholder="Type a message..." style="flex: 1; padding: 12px 15px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; color: #fff; font-size: 0.9rem;">
-            <button type="submit" style="padding: 12px 20px; background: var(--color-primary); border: none; border-radius: 8px; color: #000; font-weight: 600; cursor: pointer;">Send</button>
+        
+        <div class="chat-input-area">
+          <form onsubmit="sendMaxLabsMessage(event)">
+            <div class="chat-input-wrapper">
+              <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off">
+              <button type="submit" class="chat-send-btn">
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
           </form>
+        </div>
+        
+        <div class="chat-footer">
+          Powered by <a href="#">Max Labs</a> • We're here to help 24/7
         </div>
       </div>
     </div>
+    
     <script>
       function toggleMaxLabsChat() {
         var popup = document.getElementById('chat-popup-box');
         var btn = document.getElementById('chat-toggle-btn');
-        if (popup.style.display === 'none') {
-          popup.style.display = 'block';
-          btn.style.transform = 'scale(0.9)';
+        var teaser = document.getElementById('chat-teaser');
+        
+        popup.classList.toggle('active');
+        btn.classList.toggle('active');
+        
+        // Hide teaser when chat is open, show when closed
+        if (popup.classList.contains('active')) {
+          if (teaser) teaser.style.display = 'none';
         } else {
-          popup.style.display = 'none';
-          btn.style.transform = 'scale(1)';
+          if (teaser) teaser.style.display = '';
         }
       }
+      
+      function quickMessage(msg) {
+        document.getElementById('chat-input').value = msg;
+        document.getElementById('chat-input').focus();
+      }
+      
       function sendMaxLabsMessage(e) {
         e.preventDefault();
         var input = document.getElementById('chat-input');
+        var messages = document.getElementById('chat-messages');
+        
         if (input.value.trim()) {
-          alert('Thanks for your message! In the live store, this will connect to our support team via Tidio.');
+          // Add user message
+          var userMsg = document.createElement('div');
+          userMsg.className = 'chat-message';
+          userMsg.style.flexDirection = 'row-reverse';
+          userMsg.innerHTML = `
+            <div class="chat-message-content" style="text-align: right;">
+              <div class="chat-message-bubble" style="background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%); border-top-left-radius: 16px; border-top-right-radius: 4px; margin-left: auto;">
+                <p style="color: #000;">${input.value}</p>
+              </div>
+              <span class="chat-message-time">Just now</span>
+            </div>
+          `;
+          messages.appendChild(userMsg);
+          messages.scrollTop = messages.scrollHeight;
+          
+          var userText = input.value;
           input.value = '';
+          
+          // Simulate typing indicator then response
+          setTimeout(function() {
+            var botMsg = document.createElement('div');
+            botMsg.className = 'chat-message';
+            botMsg.innerHTML = `
+              <div class="chat-message-avatar">🧬</div>
+              <div class="chat-message-content">
+                <div class="chat-message-bubble">
+                  <p>Thanks for your message! Our team will get back to you shortly. In the meantime, feel free to browse our products or check our FAQ page.</p>
+                </div>
+                <span class="chat-message-time">Just now</span>
+              </div>
+            `;
+            messages.appendChild(botMsg);
+            messages.scrollTop = messages.scrollHeight;
+          }, 1000);
         }
       }
     </script>
   {% endif %}
 
   <script>
-    // Age Verification with 1 hour expiry
-    var AGE_VERIFY_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
-
+    // Age Verification - Uses sessionStorage to persist for browser session only
+    // This prevents the popup from appearing on every page navigation
+    
     function confirmAge() {
-      var now = new Date().getTime();
-      localStorage.setItem('maxlabs_age_verified', now.toString());
-      document.getElementById('ageModal').classList.add('hidden');
+      sessionStorage.setItem('maxlabs_age_verified', 'true');
+      document.getElementById('ageModal').classList.remove('show');
     }
 
     function denyAge() {
       window.location.href = 'https://www.google.com';
     }
 
-    // Check age verification on load - expires after 1 hour
-    document.addEventListener('DOMContentLoaded', function() {
-      var verifiedTime = localStorage.getItem('maxlabs_age_verified');
+    // Check age verification on load - only show if not verified this session
+    (function() {
+      var isVerified = sessionStorage.getItem('maxlabs_age_verified');
       var modal = document.getElementById('ageModal');
       
-      if (verifiedTime) {
-        var now = new Date().getTime();
-        var timePassed = now - parseInt(verifiedTime);
-        
-        // If less than 1 hour has passed, hide the modal
-        if (timePassed < AGE_VERIFY_DURATION) {
-          modal.classList.add('hidden');
-        } else {
-          // More than 1 hour - clear and show modal again
-          localStorage.removeItem('maxlabs_age_verified');
-          modal.classList.remove('hidden');
-        }
+      if (!isVerified) {
+        // Not verified - show the modal
+        modal.classList.add('show');
       }
-      // If no verification exists, modal shows by default
-    });
+      // If verified, modal stays hidden (default state)
+    })();
 
     // Header scroll effect
     window.addEventListener('scroll', function() {
@@ -878,6 +1418,330 @@
         document.body.style.overflow = '';
       });
     });
+
+  </script>
+
+  <!-- Homepage Sticky Add to Cart Bar -->
+  <div class="homepage-sticky-cart" id="homepageStickyCart">
+    <div class="homepage-sticky-content">
+      <div class="homepage-sticky-info">
+        <img id="homepageStickyImage" src="" alt="">
+        <div>
+          <div class="homepage-sticky-name" id="homepageStickyName"></div>
+          <div class="homepage-sticky-price" id="homepageStickyPrice"></div>
+        </div>
+      </div>
+      <form method="post" id="homepageStickyForm" onsubmit="return false;">
+        <input type="hidden" name="id" id="homepageStickyVariantId" value="">
+        <div class="homepage-qty-selector">
+          <button type="button" class="homepage-qty-btn" onclick="updateHomepageStickyQty(-1)">−</button>
+          <input type="number" name="quantity" id="homepageStickyQty" value="1" min="1" max="10">
+          <button type="button" class="homepage-qty-btn" onclick="updateHomepageStickyQty(1)">+</button>
+        </div>
+        <button type="submit" class="homepage-sticky-btn">Add</button>
+      </form>
+    </div>
+  </div>
+  
+  <style>
+    .homepage-sticky-cart {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 10, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 127, 0.3);
+      border-radius: 50px;
+      padding: 10px 25px;
+      z-index: 990;
+      transition: bottom 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .homepage-sticky-cart.visible {
+      bottom: 25px;
+    }
+    .homepage-sticky-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .homepage-sticky-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .homepage-sticky-info img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .homepage-sticky-name {
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.85rem;
+      max-width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .homepage-sticky-price {
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    #homepageStickyForm {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .homepage-sticky-btn {
+      background: var(--color-primary);
+      color: #000;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .homepage-sticky-btn:hover {
+      background: #00cc66;
+    }
+    .homepage-qty-selector {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      overflow: hidden;
+    }
+    .homepage-qty-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .homepage-qty-btn:hover {
+      background: rgba(0, 255, 127, 0.2);
+    }
+    .homepage-qty-selector input {
+      width: 35px;
+      text-align: center;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      -moz-appearance: textfield;
+    }
+    .homepage-qty-selector input::-webkit-outer-spin-button,
+    .homepage-qty-selector input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .homepage-sticky-cart {
+        left: 10px;
+        right: 10px;
+        transform: none;
+        border-radius: 12px;
+        padding: 10px 15px;
+      }
+      .homepage-sticky-cart.visible {
+        bottom: 80px;
+      }
+      .homepage-sticky-name {
+        display: none;
+      }
+    }
+  </style>
+  
+  <script>
+    // Homepage Sticky Quantity
+    function updateHomepageStickyQty(change) {
+      const input = document.getElementById('homepageStickyQty');
+      let val = parseInt(input.value) + change;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      input.value = val;
+    }
+    
+    // Homepage Sticky Cart - shows on hover
+    (function() {
+      let stickyTimeout;
+      const stickyCart = document.getElementById('homepageStickyCart');
+      
+      if (!stickyCart) return;
+      
+      document.querySelectorAll('.homepage-product-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          clearTimeout(stickyTimeout);
+          
+          document.getElementById('homepageStickyName').textContent = this.dataset.productTitle;
+          document.getElementById('homepageStickyPrice').textContent = this.dataset.productPrice;
+          document.getElementById('homepageStickyImage').src = this.dataset.productImage;
+          document.getElementById('homepageStickyVariantId').value = this.dataset.variantId;
+          document.getElementById('homepageStickyQty').value = 1; // Reset quantity
+          
+          stickyCart.classList.add('visible');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          stickyTimeout = setTimeout(() => {
+            stickyCart.classList.remove('visible');
+          }, 2000);
+        });
+      });
+      
+      // Keep visible when hovering over the bar
+      stickyCart.addEventListener('mouseenter', function() {
+        clearTimeout(stickyTimeout);
+      });
+      
+      stickyCart.addEventListener('mouseleave', function() {
+        stickyTimeout = setTimeout(() => {
+          this.classList.remove('visible');
+        }, 1000);
+      });
+      
+      // Handle add to cart
+      const form = document.getElementById('homepageStickyForm');
+      if (form) {
+        form.onsubmit = async function(e) {
+          e.preventDefault();
+          
+          const btn = this.querySelector('.homepage-sticky-btn');
+          const originalText = btn.textContent;
+          btn.textContent = 'Adding...';
+          btn.disabled = true;
+          
+          const variantId = document.getElementById('homepageStickyVariantId').value;
+          const quantityInput = document.getElementById('homepageStickyQty');
+          const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+          
+          try {
+            const res = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: Number(variantId), quantity: quantity })
+            });
+            
+            if (res.ok) {
+              btn.textContent = 'Added ✓';
+              btn.style.background = '#00CC66';
+              
+              fetch('/cart.js').then(r => r.json()).then(cart => {
+                document.querySelectorAll('.cart-count').forEach(el => {
+                  el.textContent = cart.item_count;
+                });
+              });
+              
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+              }, 2000);
+            } else {
+              throw new Error('Failed');
+            }
+          } catch (err) {
+            btn.textContent = 'Error';
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.style.background = '';
+              btn.disabled = false;
+            }, 2000);
+          }
+          
+          return false;
+        };
+      }
+    })();
+  </script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+  <style>
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 100px;
+      width: 55px;
+      height: 55px;
+      background: #00FF7F;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99999;
+      box-shadow: 0 4px 25px rgba(0, 255, 127, 0.5);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(0, 255, 127, 0.6);
+    }
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 20px;
+        right: 80px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+  <script>
+    // Back to top button - shows when scrolled more than halfway down the page
+    (function() {
+      const backToTop = document.getElementById('backToTop');
+      const chatTeaser = document.getElementById('chat-teaser');
+      const chatPopup = document.getElementById('chat-popup-box');
+      
+      if (backToTop) {
+        window.addEventListener('scroll', function() {
+          // Get total scrollable height and show button when past halfway
+          const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const halfwayPoint = scrollableHeight / 2;
+          
+          if (window.scrollY > halfwayPoint && window.scrollY > 300) {
+            backToTop.classList.add('visible');
+            // Hide chat teaser when back-to-top is visible (unless chat is open)
+            if (chatTeaser && (!chatPopup || !chatPopup.classList.contains('active'))) {
+              chatTeaser.style.display = 'none';
+            }
+          } else {
+            backToTop.classList.remove('visible');
+            // Show chat teaser when back-to-top is hidden (unless chat is open)
+            if (chatTeaser && (!chatPopup || !chatPopup.classList.contains('active'))) {
+              chatTeaser.style.display = '';
+            }
+          }
+        });
+        backToTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
   </script>
 </body>
 </html>

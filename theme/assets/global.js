@@ -77,51 +77,9 @@ function initFAQ() {
   });
 }
 
-// Add to Cart
+// Add to Cart - handled by page-specific scripts
 function initAddToCart() {
-  document.querySelectorAll('.add-to-cart-form').forEach(form => {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Adding...';
-      submitBtn.disabled = true;
-
-      try {
-        const formData = new FormData(this);
-        const response = await fetch('/cart/add.js', {
-          method: 'POST',
-          body: formData
-        });
-
-        if (response.ok) {
-          submitBtn.textContent = 'Added!';
-          submitBtn.style.background = '#00CC66';
-          
-          // Update cart count
-          updateCartCount();
-          
-          setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
-          }, 2000);
-        } else {
-          throw new Error('Failed to add to cart');
-        }
-      } catch (error) {
-        submitBtn.textContent = 'Error';
-        submitBtn.style.background = '#ff4444';
-        
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.disabled = false;
-        }, 2000);
-      }
-    });
-  });
+  // Disabled - each page handles its own add to cart
 }
 
 // Update Cart Count

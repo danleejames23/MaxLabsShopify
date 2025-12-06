@@ -1,8 +1,49 @@
+{% comment %} 
+  Determine if this product has a video 
+  Videos must be uploaded to Shopify Files (Settings > Files)
+  Then update the URLs below with the actual Shopify CDN URLs
+{% endcomment %}
+{% assign has_video = false %}
+{% assign video_url = '' %}
+{% assign product_handle_lower = product.handle | downcase %}
+
+{% comment %} 
+  Separate label/ingredients image from gallery
+  The LAST image is assumed to be the label/ingredients image
+  It will be shown in the Ingredients section instead of the gallery
+{% endcomment %}
+{% assign gallery_images = product.images %}
+{% assign label_image = nil %}
+{% if product.images.size > 1 %}
+  {% assign label_image = product.images | last %}
+  {% assign gallery_image_count = product.images.size | minus: 1 %}
+{% else %}
+  {% assign gallery_image_count = product.images.size %}
+{% endif %}
+
+{% if product_handle_lower contains 'ashwagandha' %}
+  {% assign has_video = true %}
+  {% assign video_url = 'https://cdn.shopify.com/videos/c/o/v/669f8d70a5d546e3b4c79f3073181bd0.mp4' %}
+  {% assign ambassador_name = 'BigBoyBaker' %}
+{% elsif product_handle_lower contains 'tongkat' %}
+  {% assign has_video = true %}
+  {% assign video_url = 'https://cdn.shopify.com/videos/c/o/v/bb6a619558d54cf68281736b3c592e66.mp4' %}
+  {% assign ambassador_name = 'BigBoyBaker' %}
+{% elsif product_handle_lower contains 'turkesterone' %}
+  {% assign has_video = true %}
+  {% assign video_url = 'https://cdn.shopify.com/videos/c/o/v/e5d68898be5a426d8e216d19923b2d2b.mp4' %}
+  {% assign ambassador_name = 'BigBoyBaker' %}
+{% elsif product_handle_lower contains 'alpha-gpc' or product_handle_lower contains 'alpha gpc' %}
+  {% assign has_video = true %}
+  {% assign video_url = 'https://cdn.shopify.com/videos/c/o/v/5130d043c78941b9b883ebab2b70a05f.mp4' %}
+  {% assign ambassador_name = 'BigBoyBaker' %}
+{% endif %}
+
 <div class="product-page">
   <div class="container">
     <div class="product-layout">
       <div class="product-gallery">
-        <div class="product-main-image">
+        <div class="product-main-image" id="mainMediaContainer">
           {% if product.featured_image %}
             <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" id="mainProductImage">
           {% else %}
@@ -13,11 +54,107 @@
         {% if product.images.size > 1 %}
           <div class="product-thumbnails">
             {% for image in product.images %}
-              <div class="product-thumbnail {% if forloop.first %}active{% endif %}" onclick="changeProductImage('{{ image | image_url: width: 800 }}', this)">
-                <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}">
-              </div>
+              {% unless forloop.last and product.images.size > 1 %}
+                <div class="product-thumbnail {% if forloop.first %}active{% endif %}" onclick="changeProductImage('{{ image | image_url: width: 800 }}', this)" data-type="image">
+                  <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}">
+                </div>
+              {% endunless %}
             {% endfor %}
           </div>
+          
+          <!-- Image Slideshow Script -->
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var thumbnails = document.querySelectorAll('.product-thumbnail[data-type="image"]');
+              var mainImage = document.getElementById('mainProductImage');
+              var currentSlide = 0;
+              
+              if (thumbnails.length > 1 && mainImage) {
+                setInterval(function() {
+                  currentSlide = (currentSlide + 1) % thumbnails.length;
+                  var img = thumbnails[currentSlide].querySelector('img');
+                  if (img) {
+                    mainImage.src = img.src.replace('width=100', 'width=800');
+                  }
+                  // Update active thumbnail
+                  thumbnails.forEach(function(t) { t.classList.remove('active'); });
+                  thumbnails[currentSlide].classList.add('active');
+                }, 3000);
+              }
+            });
+          </script>
+        {% endif %}
+        
+        {% if has_video %}
+        <!-- Video Section - Autoplays with sound on scroll -->
+        <div class="product-video-section" id="productVideoSection" style="margin-top: 25px; max-width: 320px; margin-left: auto; margin-right: auto;">
+          <div style="background: var(--color-background-secondary); border-radius: 12px; padding: 15px; border: 1px solid var(--color-border);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <div style="width: 28px; height: 28px; background: rgba(0, 255, 127, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="none">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </div>
+              <div>
+                <span style="font-weight: 600; color: #fff; font-size: 0.85rem;">{{ ambassador_name }}</span>
+              </div>
+            </div>
+            <video id="productVideo" style="width: 100%; border-radius: 10px; background: #000;" controls playsinline>
+              <source src="{{ video_url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('productVideo');
+            var videoSection = document.getElementById('productVideoSection');
+            var hasStarted = false;
+            var userInteracted = false;
+            
+            // Track any user interaction on the page
+            ['click', 'scroll', 'touchstart', 'keydown'].forEach(function(evt) {
+              document.addEventListener(evt, function() {
+                userInteracted = true;
+                if (video && video.muted) {
+                  video.muted = false;
+                }
+              }, { once: true });
+            });
+            
+            if (video && videoSection) {
+              // Intersection Observer for autoplay on scroll
+              var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                    if (!hasStarted) {
+                      hasStarted = true;
+                      // User already interacted, play with sound
+                      if (userInteracted) {
+                        video.muted = false;
+                        video.play();
+                      } else {
+                        // Try with sound first
+                        video.muted = false;
+                        video.play().catch(function() {
+                          // Browser blocked, start muted
+                          video.muted = true;
+                          video.play();
+                        });
+                      }
+                    } else {
+                      // Resume playing
+                      video.play();
+                    }
+                  } else {
+                    video.pause();
+                  }
+                });
+              }, { threshold: 0.3 });
+              
+              observer.observe(videoSection);
+            }
+          });
+        </script>
         {% endif %}
       </div>
       
@@ -44,6 +181,20 @@
         
         <div class="product-description">
           {{ product.description }}
+        </div>
+        
+        <!-- Discount Banner -->
+        <div style="background: linear-gradient(135deg, rgba(0, 255, 127, 0.12) 0%, rgba(0, 200, 100, 0.06) 100%); border: 1px solid rgba(0, 255, 127, 0.25); border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span style="font-size: 1.1rem;">🏷️</span>
+            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Buy More, Save More!</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.75rem;">
+            <span style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 5px;">Buy 2+ → <strong style="color: var(--color-primary);">10% off</strong></span>
+            <span style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 5px;">Buy 3+ → <strong style="color: var(--color-primary);">15% off</strong></span>
+            <span style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 5px;">Buy 4+ → <strong style="color: var(--color-primary);">20% off</strong></span>
+          </div>
+          <div style="font-size: 0.7rem; color: var(--color-text-muted); margin-top: 8px;">Discount code shown in cart when you qualify</div>
         </div>
         
         <form action="/cart/add" method="post" class="add-to-cart-form">
@@ -118,8 +269,267 @@
         </div>
       </div>
     </div>
+    
+    {% if label_image %}
+    <!-- Ingredients Section -->
+    <div class="ingredients-section" style="margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--color-border);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        
+        <!-- Ingredients Image -->
+        <div style="background: var(--color-background-secondary); border-radius: 16px; padding: 30px; border: 1px solid var(--color-border);">
+          <img src="{{ label_image | image_url: width: 600 }}" alt="{{ product.title }} - Ingredients Label" style="width: 100%; border-radius: 12px;">
+        </div>
+        
+        <!-- Ingredients Info -->
+        <div>
+          <span style="display: inline-block; background: rgba(0, 255, 127, 0.12); color: var(--color-primary); padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px;">What's Inside</span>
+          
+          <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 20px; color: #fff;">Ingredients & Nutrition</h2>
+          
+          <p style="color: var(--color-text-muted); line-height: 1.8; margin-bottom: 25px;">
+            Every Max Labs product is formulated with premium, research-backed ingredients. We believe in full transparency — what you see on the label is exactly what's in the bottle. No proprietary blends, no hidden fillers.
+          </p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: var(--color-background-secondary); border-radius: 10px; border: 1px solid var(--color-border);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span style="font-size: 0.9rem; color: #fff;">Third-Party Tested</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: var(--color-background-secondary); border-radius: 10px; border: 1px solid var(--color-border);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span style="font-size: 0.9rem; color: #fff;">No Fillers</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: var(--color-background-secondary); border-radius: 10px; border: 1px solid var(--color-border);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <span style="font-size: 0.9rem; color: #fff;">Clinically Dosed</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: var(--color-background-secondary); border-radius: 10px; border: 1px solid var(--color-border);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+              <span style="font-size: 0.9rem; color: #fff;">GMP Certified</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    {% endif %}
+    
   </div>
 </div>
+
+<!-- Sticky Add to Cart Bar -->
+<div class="product-sticky-bar" id="productStickyBar">
+  <div class="sticky-bar-content">
+    <div class="sticky-bar-info">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 80 }}" alt="{{ product.title }}">
+      {% endif %}
+      <div>
+        <div class="sticky-bar-title">{{ product.title }}</div>
+        <div class="sticky-bar-price">{{ product.price | money }}</div>
+      </div>
+    </div>
+    <form method="post" class="add-to-cart-form sticky-bar-form" onsubmit="return false;">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <div class="sticky-qty-selector">
+        <button type="button" class="sticky-qty-btn" onclick="updateProductStickyQty(-1)">−</button>
+        <input type="number" name="quantity" id="productStickyQty" value="1" min="1" max="10">
+        <button type="button" class="sticky-qty-btn" onclick="updateProductStickyQty(1)">+</button>
+      </div>
+      <button type="submit" class="sticky-bar-btn" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}Add{% else %}Sold Out{% endif %}
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .product-sticky-bar {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+    border-radius: 50px;
+    padding: 10px 25px;
+    z-index: 990;
+    transition: bottom 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .product-sticky-bar.visible {
+    bottom: 25px;
+  }
+  
+  .sticky-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .sticky-bar-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .sticky-bar-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .sticky-bar-title {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.85rem;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .sticky-bar-price {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  
+  .sticky-bar-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .sticky-bar-btn {
+    background: var(--color-primary);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .sticky-bar-btn:hover {
+    background: #00cc66;
+    transform: scale(1.02);
+  }
+  
+  .sticky-bar-btn:disabled {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+  }
+  
+  .sticky-qty-selector {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  
+  .sticky-qty-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  
+  .sticky-qty-btn:hover {
+    background: rgba(0, 255, 127, 0.2);
+  }
+  
+  .sticky-qty-selector input {
+    width: 35px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    -moz-appearance: textfield;
+  }
+  
+  .sticky-qty-selector input::-webkit-outer-spin-button,
+  .sticky-qty-selector input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .ingredients-section > div {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    
+    .product-sticky-bar {
+      left: 10px;
+      right: 10px;
+      transform: none;
+      border-radius: 12px;
+      padding: 10px 15px;
+      bottom: -100px;
+    }
+    
+    .product-sticky-bar.visible {
+      bottom: 80px; /* Above the chat and back-to-top buttons */
+    }
+    
+    .sticky-bar-content {
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .sticky-bar-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .sticky-bar-info img {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+    
+    .sticky-bar-title {
+      display: none;
+    }
+    
+    .sticky-bar-price {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    
+    .sticky-bar-btn {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+  }
+</style>
 
 <script>
 function selectVariant(element, variantId, price) {
@@ -128,4 +538,187 @@ function selectVariant(element, variantId, price) {
   document.querySelector('input[name="id"]').value = variantId;
   document.querySelector('.add-to-cart-btn').textContent = 'Add to Cart — ' + price;
 }
+
+// Product Sticky Bar Quantity
+function updateProductStickyQty(change) {
+  const input = document.getElementById('productStickyQty');
+  let val = parseInt(input.value) + change;
+  if (val < 1) val = 1;
+  if (val > 10) val = 10;
+  input.value = val;
+}
+
+function changeProductImage(imageSrc, thumbnail) {
+  const image = document.getElementById('mainProductImage');
+  
+  if (image) {
+    image.src = imageSrc;
+  }
+  
+  // Update active thumbnail
+  document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+  thumbnail.classList.add('active');
+}
+
+// Sticky Add to Cart Bar - hide only when main Add to Cart button is visible on screen
+(function() {
+  const stickyBar = document.getElementById('productStickyBar');
+  const mainAddToCartBtn = document.querySelector('.add-to-cart-btn');
+  
+  if (stickyBar && mainAddToCartBtn) {
+    // Show by default
+    stickyBar.classList.add('visible');
+    
+    window.addEventListener('scroll', function() {
+      const btnRect = mainAddToCartBtn.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Hide when main button is visible on screen (between top and bottom of viewport)
+      if (btnRect.top < windowHeight && btnRect.bottom > 0) {
+        stickyBar.classList.remove('visible');
+      } else {
+        // Show when main button is above or below viewport
+        stickyBar.classList.add('visible');
+      }
+    });
+  }
+})();
+
+// Add to Cart Handler for Product Page
+(function() {
+  // Handle main product form
+  const mainForm = document.querySelector('form.add-to-cart-form');
+  if (mainForm) {
+    const mainBtn = mainForm.querySelector('.add-to-cart-btn');
+    if (mainBtn) {
+      const originalText = mainBtn.textContent.trim();
+      
+      mainForm.onsubmit = async function(e) {
+        e.preventDefault();
+        
+        if (mainBtn.disabled) return false;
+        
+        mainBtn.textContent = 'Adding...';
+        mainBtn.disabled = true;
+
+        const variantId = this.querySelector('input[name="id"]').value;
+        const quantityInput = this.querySelector('input[name="quantity"]');
+        const quantity = quantityInput ? quantityInput.value : 1;
+
+        try {
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+              id: Number(variantId), 
+              quantity: Number(quantity) 
+            })
+          });
+
+          if (res.ok) {
+            mainBtn.textContent = 'Added ✓';
+            mainBtn.style.background = '#00CC66';
+            
+            // Update cart count
+            fetch('/cart.js')
+              .then(r => r.json())
+              .then(cart => {
+                document.querySelectorAll('.cart-count').forEach(el => {
+                  el.textContent = cart.item_count;
+                });
+              });
+            
+            setTimeout(() => {
+              mainBtn.textContent = originalText;
+              mainBtn.style.background = '';
+              mainBtn.disabled = false;
+            }, 2000);
+          } else {
+            throw new Error('Failed to add');
+          }
+        } catch (err) {
+          console.error('Add to cart error:', err);
+          mainBtn.textContent = 'Try Again';
+          mainBtn.style.background = '#ff4444';
+          setTimeout(() => {
+            mainBtn.textContent = originalText;
+            mainBtn.style.background = '';
+            mainBtn.disabled = false;
+          }, 2000);
+        }
+        
+        return false;
+      };
+    }
+  }
+  
+  // Handle sticky bar form
+  const stickyForm = document.querySelector('.sticky-bar-form');
+  if (stickyForm) {
+    const stickyBtn = stickyForm.querySelector('.sticky-bar-btn');
+    if (stickyBtn) {
+      const originalText = stickyBtn.textContent.trim();
+      
+      stickyForm.onsubmit = async function(e) {
+        e.preventDefault();
+        
+        if (stickyBtn.disabled) return false;
+        
+        stickyBtn.textContent = 'Adding...';
+        stickyBtn.disabled = true;
+
+        const variantId = this.querySelector('input[name="id"]').value;
+        const quantityInput = document.getElementById('productStickyQty');
+        const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+        try {
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+              id: Number(variantId), 
+              quantity: quantity 
+            })
+          });
+
+          if (res.ok) {
+            stickyBtn.textContent = 'Added ✓';
+            stickyBtn.style.background = '#00CC66';
+            
+            fetch('/cart.js')
+              .then(r => r.json())
+              .then(cart => {
+                document.querySelectorAll('.cart-count').forEach(el => {
+                  el.textContent = cart.item_count;
+                });
+              });
+            
+            setTimeout(() => {
+              stickyBtn.textContent = originalText;
+              stickyBtn.style.background = '';
+              stickyBtn.disabled = false;
+            }, 2000);
+          } else {
+            throw new Error('Failed');
+          }
+        } catch (err) {
+          stickyBtn.textContent = 'Error';
+          setTimeout(() => {
+            stickyBtn.textContent = originalText;
+            stickyBtn.style.background = '';
+            stickyBtn.disabled = false;
+          }, 2000);
+        }
+        
+        return false;
+      };
+    }
+  }
+})();
 </script>

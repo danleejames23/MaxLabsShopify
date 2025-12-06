@@ -1,127 +1,723 @@
-<div class="page-header" style="position: relative; padding: 35px 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.85) 100%); overflow: hidden;">
-  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80') center/cover; opacity: 0.3;"></div>
-  <div class="container" style="position: relative; z-index: 1; text-align: center;">
-    <span style="display: inline-block; background: rgba(0, 255, 127, 0.12); color: #00FF7F; padding: 5px 14px; border-radius: 50px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Get In Touch</span>
-    <h1 class="page-title" style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #fff 0%, #00FF7F 50%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Contact Us</h1>
-    <p class="page-subtitle" style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 500px; margin: 0 auto;">We're here to help. Get in touch with our team.</p>
-  </div>
-</div>
+<style>
+  .contact-hero {
+    position: relative;
+    padding: 50px 0 40px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+    overflow: hidden;
+  }
+  
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(0, 255, 127, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(0, 255, 127, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .contact-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300FF7F' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  
+  .contact-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .contact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 255, 127, 0.1);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    color: #00FF7F;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+  
+  .contact-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .contact-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff 0%, #00FF7F 50%, #fff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+  
+  .contact-hero p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+  }
+  
+  .contact-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .contact-stat {
+    text-align: center;
+  }
+  
+  .contact-stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #00FF7F;
+    display: block;
+  }
+  
+  .contact-stat-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .contact-main {
+    padding: 80px 0;
+    background: #0d0d0d;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .contact-info-section {
+    padding-right: 40px;
+  }
+  
+  .contact-info-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  .contact-info-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-card:hover {
+    border-color: rgba(0, 255, 127, 0.3);
+    transform: translateX(5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-card-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 255, 127, 0.05) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .contact-card-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: #00FF7F;
+  }
+  
+  .contact-card-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  
+  .contact-card-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .contact-card-content a {
+    color: #00FF7F;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .contact-card-content a:hover {
+    opacity: 0.8;
+  }
+  
+  .contact-socials {
+    margin-top: 40px;
+  }
+  
+  .contact-socials-title {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+  
+  .contact-social-links {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .contact-social-link {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-social-link:hover {
+    background: #00FF7F;
+    border-color: #00FF7F;
+    transform: translateY(-3px);
+  }
+  
+  .contact-social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transition: fill 0.3s;
+  }
+  
+  .contact-social-link:hover svg {
+    fill: #000;
+  }
+  
+  .contact-form-section {
+    background: linear-gradient(135deg, #141414 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .contact-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00FF7F, #00CC66, #00FF7F);
+  }
+  
+  .contact-form-header {
+    margin-bottom: 35px;
+  }
+  
+  .contact-form-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  
+  .contact-form-header p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .form-group-modern {
+    margin-bottom: 22px;
+  }
+  
+  .form-label-modern {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+  }
+  
+  .form-input-modern {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .form-input-modern::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .form-input-modern:focus {
+    border-color: #00FF7F;
+    background: rgba(0, 255, 127, 0.03);
+    box-shadow: 0 0 0 4px rgba(0, 255, 127, 0.1);
+  }
+  
+  .form-textarea-modern {
+    min-height: 140px;
+    resize: vertical;
+  }
+  
+  .form-select-modern {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300FF7F' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    padding-right: 50px;
+  }
+  
+  .form-submit-btn {
+    width: 100%;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .form-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 127, 0.3);
+  }
+  
+  .form-submit-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+  }
+  
+  .form-submit-btn:hover svg {
+    transform: translateX(5px);
+  }
+  
+  .form-success {
+    background: rgba(0, 255, 127, 0.1);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .form-success svg {
+    width: 24px;
+    height: 24px;
+    stroke: #00FF7F;
+    flex-shrink: 0;
+  }
+  
+  .form-success p {
+    color: #00FF7F;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  .form-error {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+  }
+  
+  .form-error p {
+    color: #ff6b6b;
+    margin: 0;
+  }
+  
+  .contact-faq {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
+  }
+  
+  .contact-faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .contact-faq-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .contact-faq-header p {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 25px 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    border-color: rgba(0, 255, 127, 0.2);
+    background: rgba(0, 255, 127, 0.02);
+  }
+  
+  .faq-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .faq-item h4::before {
+    content: '?';
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 255, 127, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #00FF7F;
+    font-weight: 700;
+  }
+  
+  .faq-item p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 34px;
+  }
+  
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .contact-info-section {
+      padding-right: 0;
+    }
+    
+    .contact-hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .contact-stats {
+      gap: 30px;
+    }
+    
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .contact-hero {
+      padding: 50px 20px;
+    }
+    
+    .contact-hero h1 {
+      font-size: 2rem;
+    }
+    
+    .contact-stats {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .contact-form-section {
+      padding: 30px 20px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 
-<div class="page-content" style="padding-top: 30px;">
-  <div class="container">
-    <div class="contact-layout">
-      <div class="contact-form">
-        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 30px;">Send Us a Message</h3>
-        
-        {% form 'contact' %}
-          {% if form.posted_successfully? %}
-            <div style="background: rgba(0, 255, 127, 0.1); border: 1px solid var(--color-primary); padding: 20px; border-radius: var(--border-radius); margin-bottom: 25px;">
-              <p style="color: var(--color-primary); margin: 0;">Thanks for contacting us! We'll get back to you within 24 hours.</p>
-            </div>
-          {% endif %}
-          
-          {% if form.errors %}
-            <div style="background: rgba(255, 68, 68, 0.1); border: 1px solid #ff4444; padding: 20px; border-radius: var(--border-radius); margin-bottom: 25px;">
-              <p style="color: #ff4444; margin: 0;">{{ form.errors | default_errors }}</p>
-            </div>
-          {% endif %}
-          
-          <div class="form-group">
-            <label class="form-label" for="contact-name">Full Name *</label>
-            <input type="text" id="contact-name" name="contact[name]" class="form-input" required placeholder="John Doe">
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="contact-email">Email Address *</label>
-            <input type="email" id="contact-email" name="contact[email]" class="form-input" required placeholder="john@example.com">
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="contact-phone">Phone Number</label>
-            <input type="tel" id="contact-phone" name="contact[phone]" class="form-input" placeholder="+1 (555) 123-4567">
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="contact-subject">Subject *</label>
-            <select id="contact-subject" name="contact[subject]" class="form-input" required>
-              <option value="">Select a subject</option>
-              <option value="Order Inquiry">Order Inquiry</option>
-              <option value="Product Question">Product Question</option>
-              <option value="Returns & Refunds">Returns & Refunds</option>
-              <option value="Shipping">Shipping</option>
-              <option value="Wholesale">Wholesale Inquiry</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="contact-message">Message *</label>
-            <textarea id="contact-message" name="contact[body]" class="form-textarea" required placeholder="How can we help you?"></textarea>
-          </div>
-          
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-        {% endform %}
+<!-- Hero Section -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <div class="contact-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
+      Get In Touch
+    </div>
+    <h1>Let's Start a Conversation</h1>
+    <p>Have questions about our supplements or need personalized recommendations? Our expert team is here to help you achieve your fitness goals.</p>
+    
+    <div class="contact-stats">
+      <div class="contact-stat">
+        <span class="contact-stat-value">&lt;2hrs</span>
+        <span class="contact-stat-label">Avg Response</span>
       </div>
+      <div class="contact-stat">
+        <span class="contact-stat-value">50K+</span>
+        <span class="contact-stat-label">Happy Customers</span>
+      </div>
+      <div class="contact-stat">
+        <span class="contact-stat-value">4.9★</span>
+        <span class="contact-stat-label">Support Rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Contact Section -->
+<section class="contact-main">
+  <div class="contact-grid">
+    <!-- Left: Contact Info -->
+    <div class="contact-info-section">
+      <h2 class="contact-info-title">How Can We Help?</h2>
+      <p class="contact-info-subtitle">Choose the best way to reach us. We're available Monday through Friday, 9AM to 6PM GMT.</p>
       
-      <div class="contact-info">
-        <h3>Get in Touch</h3>
-        <p style="color: var(--color-text-muted); margin-bottom: 40px;">Have questions? We're here to help! Our customer support team typically responds within 24 hours.</p>
-        
-        <div class="contact-info-item">
-          <div class="contact-info-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
           </div>
-          <div class="contact-info-content">
+          <div class="contact-card-content">
             <h4>Email Us</h4>
-            <p>support@maxlabs.com</p>
+            <p><a href="mailto:support@maxlabs.com">support@maxlabs.com</a></p>
           </div>
         </div>
         
-        <div class="contact-info-item">
-          <div class="contact-info-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-          </div>
-          <div class="contact-info-content">
-            <h4>Call Us</h4>
-            <p>1-800-MAX-LABS (629-5227)</p>
-          </div>
-        </div>
-        
-        <div class="contact-info-item">
-          <div class="contact-info-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <div class="contact-info-content">
+          <div class="contact-card-content">
             <h4>Business Hours</h4>
-            <p>Mon - Fri: 9AM - 6PM EST<br>Sat - Sun: Closed</p>
+            <p>Mon - Fri: 9AM - 6PM GMT<br>Weekend: Email Support Only</p>
           </div>
         </div>
         
-        <div class="contact-info-item">
-          <div class="contact-info-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
           </div>
-          <div class="contact-info-content">
-            <h4>Headquarters</h4>
-            <p>123 Supplement Way<br>Miami, FL 33101</p>
+          <div class="contact-card-content">
+            <h4>Live Chat</h4>
+            <p>Click the chat icon in the corner for instant support</p>
           </div>
         </div>
-        
-        <div class="contact-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114964.53925916665!2d-80.29949920266am!3d25.782390733064336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b0a20ec8c111%3A0xff96f271ddad4f65!2sMiami%2C%20FL!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      
+      <div class="contact-socials">
+        <p class="contact-socials-title">Follow Us</p>
+        <div class="contact-social-links">
+          <a href="#" class="contact-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="contact-social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          </a>
+          <a href="#" class="contact-social-link" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="contact-social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
         </div>
       </div>
     </div>
+    
+    <!-- Right: Contact Form -->
+    <div class="contact-form-section">
+      <div class="contact-form-header">
+        <h3>Send Us a Message</h3>
+        <p>Fill out the form and we'll get back to you within 24 hours.</p>
+      </div>
+      
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <div class="form-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <p>Thanks for reaching out! We'll get back to you within 24 hours.</p>
+          </div>
+        {% endif %}
+        
+        {% if form.errors %}
+          <div class="form-error">
+            <p>{{ form.errors | default_errors }}</p>
+          </div>
+        {% endif %}
+        
+        <div class="form-row">
+          <div class="form-group-modern">
+            <label class="form-label-modern" for="contact-name">Full Name *</label>
+            <input type="text" id="contact-name" name="contact[name]" class="form-input-modern" required placeholder="Your name">
+          </div>
+          
+          <div class="form-group-modern">
+            <label class="form-label-modern" for="contact-email">Email Address *</label>
+            <input type="email" id="contact-email" name="contact[email]" class="form-input-modern" required placeholder="you@example.com">
+          </div>
+        </div>
+        
+        <div class="form-group-modern">
+          <label class="form-label-modern" for="contact-subject">Subject *</label>
+          <select id="contact-subject" name="contact[subject]" class="form-input-modern form-select-modern" required>
+            <option value="">What can we help you with?</option>
+            <option value="Order Inquiry">Order Inquiry</option>
+            <option value="Product Question">Product Question</option>
+            <option value="Returns & Refunds">Returns & Refunds</option>
+            <option value="Shipping">Shipping Information</option>
+            <option value="Wholesale">Wholesale Inquiry</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group-modern">
+          <label class="form-label-modern" for="contact-message">Your Message *</label>
+          <textarea id="contact-message" name="contact[body]" class="form-input-modern form-textarea-modern" required placeholder="Tell us how we can help..."></textarea>
+        </div>
+        
+        <button type="submit" class="form-submit-btn">
+          Send Message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      {% endform %}
+    </div>
   </div>
-</div>
+</section>
+
+<!-- FAQ Section -->
+<section class="contact-faq">
+  <div class="contact-faq-header">
+    <h2>Frequently Asked Questions</h2>
+    <p>Quick answers to common questions</p>
+  </div>
+  
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h4>How long does shipping take?</h4>
+      <p>UK orders typically arrive within 1-3 business days. International shipping takes 5-10 business days depending on location.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h4>What's your return policy?</h4>
+      <p>We offer a 30-day money-back guarantee on all products. If you're not satisfied, contact us for a full refund.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h4>Are your products tested?</h4>
+      <p>Yes! All our supplements are third-party lab tested for purity and potency. Certificates are available upon request.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h4>Do you offer wholesale pricing?</h4>
+      <p>Yes, we work with gyms, retailers, and influencers. Select "Wholesale Inquiry" in the form above to learn more.</p>
+    </div>
+  </div>
+</section>
